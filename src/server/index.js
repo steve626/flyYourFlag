@@ -6,7 +6,7 @@ let port = process.env.PORT || 3000;
 
 app.use(express.static("dist"));
 
-app.get("/api/time", (req, res) =>
+app.get("/", (req, res) =>
 
   res.send({ 'Fly Your Flag is running on': os.hostname()})
 
