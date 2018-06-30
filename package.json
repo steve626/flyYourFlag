@@ -2,6 +2,7 @@
   "name": "fly-your-flag",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "homepage": "https://steve626.github.io/flyYourFlag/",
   "dependencies": {
     "express": "^4.16.3",
