@@ -2,9 +2,12 @@
   "name": "fly-your-flag",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "homepage": "https://steve626.github.io/flyYourFlag/",
   "dependencies": {
+    "express": "^4.16.3",
     "gh-pages": "^1.2.0",
+    "os": "^0.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
@@ -16,5 +19,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "webpack": "^4.13.0",
+    "webpack-cli": "^3.0.8"
   }
 }
