@@ -15,4 +15,4 @@ beforeEach(done => {
     //.then(() => users.ensureIndex({ 'geometry.coordinates': '2dsphere'}))
     .then(() => done())
     .catch(() => done());
-})
+});
