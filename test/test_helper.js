@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
+
 before(done => {
   mongoose.connect('mongodb://localhost/FYF_test');
   mongoose.connection
-    .once('open', () => done())
+    .once('open', () => 
+    {console.log('connected to testDB'), done();})
     .on('error', err => {
       console.warn('Warning', error);
     });

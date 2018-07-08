@@ -1,16 +1,8 @@
-const team = require('../models/teams')
+const team = require('../models/team')
+
 
 module.exports = {
   
-
-  index(req, res, next) {
-    
-    .then((teams) => {
-      res.send(teams);
-    })
-    .catch(next);
-  },
-
   create(req, res, next) {
     const teamProps = req.body;
 
