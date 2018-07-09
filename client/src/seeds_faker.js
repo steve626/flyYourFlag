@@ -29,6 +29,7 @@ function createUsers() {
     email: faker.email.findEmail(),
     password: faker.password.findPassword(),
     //assign team to _id of teams in teamDB should be ~100 fans of each team
+    //if we remove NHL and MLS replace the max number with 93
     team: randomBetween(0, 148),
     geometry: {
       lng: faker.lng.randomBetween(-124, -70),

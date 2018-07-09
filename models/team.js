@@ -1,13 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+//const fs = require('file-system');
 
-var teamDB = 'mongodb://127.0.0.1/fyf_team_db'
+//enter this line into the terminal to add teams.json data to mongoDB:
+// root_dir$ mongoimport --db fyf_teams_db --type --json --file teams.json 
 
-mongoose.connect(teamDB);
 mongoose.Promise = global.Promise;
 
-var db = mongoose.connection
-db.on('error', console.error.bind(console, 'MongoDB connection error'));
+var teamDB = 'mongodb://localhost/fyf_teams_db'
+
+before(done => {
+  mongoose.connect('teamDB');
+  mongoose.connection
+    .once('open', () => 
+    {console.log('connected to testDB'), done();})
+    .on('error', err => {
+      console.warn('Warning', error);
+    });
+});
+
 
 const PointSchema = new Schema({
   type: { type: String, default: 'Point'},
