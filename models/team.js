@@ -7,17 +7,17 @@ const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
 
-var teamDB = 'mongodb://localhost/fyf_teams_db'
+// var teamDB = 'mongodb://localhost/fyf_teams_db'
 
-before(done => {
-  mongoose.connect('teamDB');
-  mongoose.connection
-    .once('open', () => 
-    {console.log('connected to testDB'), done();})
-    .on('error', err => {
-      console.warn('Warning', error);
-    });
-});
+// before(done => {
+//   mongoose.connect('teamDB');
+//   mongoose.connection
+//     .once('open', () => 
+//     {console.log('connected to tDB'), done();})
+//     .on('error', err => {
+//       console.warn('Warning', error);
+//     });
+// });
 
 
 const PointSchema = new Schema({
@@ -36,6 +36,6 @@ const teamSchema = new Schema({
   geometry: PointSchema
 });
 
-const team = mongoose.model('team', teamSchema);
+const Team = mongoose.model('team', teamSchema);
 
-module.exports = team;
+module.exports = Team;

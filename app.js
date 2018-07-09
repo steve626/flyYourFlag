@@ -5,15 +5,16 @@ const mongoose = require('mongoose');
 const app = express();
 
 mongoose.Promise = global.Promise;
-if (process.env.NODE_ENV !== 'test'){
-  before((done) => 
-mongoose.connect('mongodb://localhost/fyf_teams_db')
-    .once('open', () => {console.log('connected to teamDB'), done();})
-    .on('error', (error) => {
-      console.log('warning: ', error);
-    })
-)};
+// if (process.env.NODE_ENV !== 'test'){
+//   before((done) => 
+// mongoose.connect('mongodb://localhost/fyf_teams_db')
+//     .once('open', () => {console.log('connected to testDB'), done();})
+//     .on('error', (error) => {
+//       console.log('warning: ', error);
+//     })
+// )};
 
+mongoose.connect('mongodb://')
 //always add bodyParser before calling app
 app.use(bodyParser.json());
 routes(app);
