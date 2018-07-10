@@ -4,7 +4,7 @@ import { Col, Row, Container } from '../../components/Grid';
 import { Input, FormBtn } from '../../components/Form';
 import {List, ListItem } from '../../List';
 import User from '../LogIn';
-import { userInfo } from 'os';
+
 //shows user email and teams chosen, simple.
 
 class Profile extends Component {

@@ -45,7 +45,7 @@ class TeamChooser extends Component {
       super();
     }
 
-    render (){
+    
       let Teams = this.props.state.Teams;
       let optionItems = Teams.map((league) =>
     )
