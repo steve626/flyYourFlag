@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
-import { Input, TextArea, FormBtn } from '../../components/Form';
+import { Input, FormBtn } from '../../components/Form';
 
 //collect email and password from user, may persist on reload
 class User extends Component {
@@ -20,9 +20,9 @@ class User extends Component {
   //fxn for collecting user email and password and coordinates? should location 
   //be collected here or on the map screen...?
 
-  handleFormSubmit = even => {
+  handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.email &&)this.state.password) {
+    if (this.state.email && this.state.password) {
       API.saveUser({
         email: this.state.email,
         password: this.state.password
@@ -34,10 +34,41 @@ class User extends Component {
 
   render() {
     return (
+      <Wrapper>
+        <Container>
+          <Row>
+            <Col size="sm-4">
+              <Jumbotron>
+                <h2>Fly Your Flag</h2>
+                <h4>find your fellow fans</h4>
+              </Jumbotron>
+              <Form>
+                <Input
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  name='email'
+                  placeholder='your email (required)'
+                />
+                <Input
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  name='password'
+                  placeholder='your password (at least 6 characters)'
+                />
+              </Form>
+              <FormBtn
+                disabled={!(this.state.email && this.state.password)}
+                onClick={this.handleFormSubmit}
+                >
+                Log In
+              </FormBtn>
+            </Col>
+          </Row>
+        </Container>
+      </Wrapper>
 
-    )
-  }
-
- 
+  )};
   
 }
+
+export default User;
