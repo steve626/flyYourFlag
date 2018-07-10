@@ -32,9 +32,9 @@ function createUsers() {
     //if we remove NHL and MLS replace the max number with 93
     team: randomBetween(0, 148),
     geometry: {
-      //should reduce our population to the PHX metro area
-      lng: faker.lng.randomBetween(-111.6, -112.3),
-      lat: faker.lat.randomBetween(33.2, 33.5)
+      //should reduce our population to the immediate area
+      lng: faker.lng.randomBetween(-111.85, -111.80),
+      lat: faker.lat.randomBetween(33.3, 33.5)
     }
   };
 }
