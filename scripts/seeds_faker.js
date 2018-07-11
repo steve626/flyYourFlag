@@ -2,7 +2,7 @@ import _ from 'lodash';
 import faker from 'faker';
 import { Db, Server } from 'mongodb';
 
-const faker = require('faker/locale/en-US');
+const faker = require('faker');
 
 const MINIMUM_USERS = 2000;
 const USERS_TO_ADD = 15000;
@@ -33,8 +33,8 @@ function createUsers() {
     team: randomBetween(0, 148),
     geometry: {
       //should reduce our population to the immediate area
-      lng: faker.lng.randomBetween(-111.85, -111.80),
-      lat: faker.lat.randomBetween(33.3, 33.5)
+      lng: randomBetween(-111.85, -111.80),
+      lat: randomBetween(33.3, 33.5)
     }
   };
 }
