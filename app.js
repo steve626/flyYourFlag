@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 //     })
 // )};
 
-mongoose.connect('mongodb://')
+mongoose.connect('mongodb://localhost/fyf_db')
 //always add bodyParser before calling app
 app.use(bodyParser.json());
 routes(app);

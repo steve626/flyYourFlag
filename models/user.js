@@ -24,7 +24,7 @@ const userSchema = new Schema({
     required: [true, 'password is required']
   },
   teams: {
-    type: [string]
+    type: [String]
   },
   geometry: PointSchema
 });

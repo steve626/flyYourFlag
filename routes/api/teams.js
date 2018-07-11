@@ -1,14 +1,25 @@
-const teamsController = require('../controllers/teams_controllers');
+const teamController = require('../controllers/team_controllers');
+const userController = require('../controllers/user_controllers');
 module.exports = (app) => {
 
 // watch for incoming GET to the route http://localhost:3050/api
-app.get('/api', teamsController.greeting);
+app.get('/api', teamController.greeting);
 
-app.post('/api/teams', teamsController.create);
+app.post('/api/team', teamController.create);
 
-app.put('/api/teams/:id', teamsController.edit);
+app.put('/api/team/:id', teamController.edit);
 
-app.delete('/api/teams/:id', teamsController.delete);
+app.delete('/api/team/:id', teamController.delete);
 
-app.get('/api/teams', teamsController.index);
+app.get('/api/team', teamController.index);
+
+app.get('/api', userController.greeting);
+
+app.post('/api/user', userController.create);
+
+app.put('/api/user/:id', userController.edit);
+
+app.delete('/api/user/:id', userController.delete);
+
+app.get('/api/user', userController.index);
 };

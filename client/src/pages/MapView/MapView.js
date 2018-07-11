@@ -23,6 +23,9 @@ function initMap = () => {
   });
 
 }
+//userDB will have random number for a team name. That will need to be made to correspond to
+//one of the teams from the teamsDB.
+//findAllAndReplace number with team name. Not sure where that needs to go.
 
 
 <Wrapper>
