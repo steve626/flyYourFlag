@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 //const routes = require("./routes");
 const app = express();
-<<<<<<< HEAD
+
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -17,20 +17,6 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/fyf_db');
-
-// Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
-=======
-
-
-let port = process.env.PORT || 3000;
-
-app.use(express.static("dist"));
-
-
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/fyf_db'
 );
@@ -41,13 +27,9 @@ mongoose.connection
     console.warn('Warning', err);
   });
 
-app.get("/", (req, res) =>
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
 
-  res.send({ 'Fly Your Flag is running on': os.hostname()})
-
-);
-
-
-app.listen(port, () => console.log("Listening on port " + port));
->>>>>>> df38351d04dd80d8250953f02f5117e0fe0c0c84
 
