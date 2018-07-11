@@ -1,21 +1,18 @@
 const mongoose = require('mongoose');
-const db = require('../models/team.js');
+const db = require('../models');
 mongoose.Promise = global.Promise;
 
-before(done => {
+
   mongoose.connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/fyf_teams_db',
-    {
-      useMongoClient: true
-    }
+    process.env.MONGODB_URI || 'mongodb://localhost/fyf_db'
+    
   );
   mongoose.connection
   .once('open', ()=> 
-    {console.log('connected to teamDB'), done();})
+    {console.log('Built teamDB')})
   .on('error', err => {
     console.warn('Warning', err);
   });
-});
 
 
 const teamSeed = [
@@ -168,8 +165,8 @@ const teamSeed = [
 ];
 
 db.Team
-  .remove({})
-  .then(() => db.Teams.collection.insertMany(teamSeed))
+  .remove()
+  .then(() => db.Team.collection.insertMany(teamSeed))
   .then(data =>{
     console.log(data.insertedIds.length + " records inserted");
     process.exit(0);
