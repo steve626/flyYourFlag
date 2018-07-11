@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import LogIn from './pages/LogIn';
 // import MapView from './pages/MapView';
 // import Profile from './pages/Profile';

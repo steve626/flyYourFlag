@@ -30,12 +30,9 @@ mongoose.connection
     console.warn('Warning', err);
   });
 
-app.get("/", (req, res) =>
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
 
-  res.send({ 'Fly Your Flag is running on': os.hostname()})
-
-);
-
-
-app.listen(port, () => console.log("Listening on port " + port));
 
