@@ -10,7 +10,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     validate:{
-      validator: (email) => name.length > 2,
+      validator: (email) => email.length > 2,
         message:'must enter an email'
     },
     required: [true, 'email is required']
