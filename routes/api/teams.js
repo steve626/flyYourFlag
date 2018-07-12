@@ -1,25 +1,36 @@
-const teamController = require('../controllers/team_controllers');
-const userController = require('../controllers/user_controllers');
-module.exports = (app) => {
+const teamController = require('../../controllers/team_controllers');
+const userController = require('../../controllers/user_controllers');
+const router = require("express").Router();
 
-// watch for incoming GET to the route http://localhost:3050/api
-app.get('/api', teamController.greeting);
+// "/" defaults to /api/team
+router.route("/")
+    .get(teamController.findAll)
+    .post(teamController.create);
 
-app.post('/api/team', teamController.create);
 
-app.put('/api/team/:id', teamController.edit);
+//module.exports = (app) => {
 
-app.delete('/api/team/:id', teamController.delete);
+// watch for incoming GET to the route http://localhost:3001/api
 
-app.get('/api/team', teamController.index);
+//app.get('/', teamController.findAll);
 
-app.get('/api', userController.greeting);
+//app.post('/api/team', teamController.create);
 
-app.post('/api/user', userController.create);
+//app.put('/api/team/:id', teamController.edit);
 
-app.put('/api/user/:id', userController.edit);
+//app.delete('/api/team/:id', teamController.delete);
 
-app.delete('/api/user/:id', userController.delete);
+//app.get('/api/team', teamController.index);
 
-app.get('/api/user', userController.index);
-};
+//app.get('/api', userController.greeting);
+
+//app.post('/api/user', userController.create);
+
+//app.put('/api/user/:id', userController.edit);
+
+//app.delete('/api/user/:id', userController.delete);
+
+//app.get('/api/user', userController.index);
+//};
+
+module.exports = router;

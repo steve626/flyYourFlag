@@ -9,6 +9,7 @@
   "dependencies": {
     "arrow": "^3.1.2",
     "body-parser": "^1.18.3",
+    "concurrently": "^3.6.0",
     "express": "^4.16.3",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.1",
@@ -22,12 +23,11 @@
   "scripts": {
     "seed": "node scripts/seedTeamsDB.js",
     "seed2": "node scripts/seeds_faker.js",
-    "test": "nodemon --exec mocha -R min --timeout 10000"
+    "test": "nodemon --exec mocha -R min --timeout 10000",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/steve626/flyYourFlag.git"
-  },
+  "repository": "git+https://github.com/steve626/flyYourFlag.git",
   "author": "dixosoft",
   "license": "ISC",
   "bugs": {

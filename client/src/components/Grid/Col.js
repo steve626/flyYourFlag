@@ -1,6 +1,6 @@
 import React from "react";
 
-const Column = props => {
+export const Col = props => {
     const size = props.size.split(' ').map(size => 'col-' + size).join(' ');
     return (
         <div className={size}>
@@ -9,4 +9,3 @@ const Column = props => {
     );
 };
 
-export default Column;
