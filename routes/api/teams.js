@@ -1,5 +1,5 @@
-const teamController = require('../controllers/team_controllers');
-const userController = require('../controllers/user_controllers');
+const teamController = require('../../controllers/team_controllers');
+const userController = require('../../controllers/user_controllers');
 module.exports = (app) => {
 
 // watch for incoming GET to the route http://localhost:3050/api

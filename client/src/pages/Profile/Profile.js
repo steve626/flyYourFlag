@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Wrapper from '../../components/Wrapper'
 import Jumbotron from '../../components/Jumbotron';
-import { FormBtn, Form, Input, FormGroup} from '../../components/Form'
+import { FormBtn, Form, Input } from '../../components/Form'
 import { Col, Row, Container } from '../../components/Grid';
 import {List, ListItem } from '../../components/List';
 import User from '../LogIn';
@@ -77,4 +77,4 @@ class Profile extends Component {
 
 }
 
-
+export default Profile;

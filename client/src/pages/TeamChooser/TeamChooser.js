@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Wrapper from "../../components/Wrapper"
 import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
-import { Input, FormBtn } from '../../components/Form';
+import { FormBtn }  from '../../components/Form';
 //import Teams from ''
 
 //psuedocode of choosing teams:
