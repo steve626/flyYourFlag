@@ -31,7 +31,7 @@ class TeamChooser extends Component {
   //be collected here or on the map screen...?
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    //event.preventDefault();
     if (this.state.team) {
       // API.saveTeams({
       //   teams: this.state.teams
