@@ -7,6 +7,7 @@ router.route("/")
     .get(teamController.findAll)
     .post(teamController.create);
 
+module.exports = router;
 
 //module.exports = (app) => {
 
@@ -32,5 +33,3 @@ router.route("/")
 
 //app.get('/api/user', userController.index);
 //};
-
-module.exports = router;
