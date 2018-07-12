@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "homepage": "https://steve626.github.io/flyYourFlag/",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "gh-pages": "^1.2.0",
     "google-map-react": "^1.0.5",

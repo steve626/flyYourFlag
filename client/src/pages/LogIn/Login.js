@@ -3,6 +3,7 @@ import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
 import { Input, FormBtn, Form } from '../../components/Form';
 import Wrapper from "../../components/Wrapper"
+import API from '../../utils/API';
 
 //collect email and password from user, may persist on reload
 class User extends Component {
@@ -24,13 +25,20 @@ class User extends Component {
   handleFormSubmit = event => {
     //event.preventDefault();
     if (this.state.email && this.state.password) {
-      // API.saveUser({
-      //   email: this.state.email,
-      //   password: this.state.password
-      //   //,location: { lng: this.query.lng, lat: this.query.lat } (probably the wrong fucking format)
-      // })
-      // .catch(err => console.warn(err));
+      API.saveUser({
+        email: this.state.email,
+        password: this.state.password
+        //,location: { lng: this.query.lng, lat: this.query.lat } (probably the wrong fucking format)
+      })
+      .catch(err => console.warn(err));
     }
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+      this.setState({
+        [name]: value
+      });
   };
 
   render() {
@@ -57,7 +65,7 @@ class User extends Component {
                   placeholder='your password (at least 6 characters)'
                 />
               </Form>
-              <FormBtn
+              <FormBtn              
                 disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}
                 >
