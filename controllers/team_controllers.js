@@ -3,6 +3,12 @@ const team = require('../models/team')
 
 module.exports = {
   
+  findAll(req, res) {
+    team.find(req.query)
+    .then(teamModel => res.json(teamModel))
+    .catch(err => res.status(422).json(err));
+  },
+
   create(req, res, next) {
     const teamProps = req.body;
 
