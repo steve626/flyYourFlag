@@ -3,6 +3,8 @@ import Wrapper from "../../components/Wrapper"
 import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
 import { FormBtn }  from '../../components/Form';
+import API from "../../utils/API"
+import {List, ListItem } from "../../components/List"
 //import Teams from ''
 
 //psuedocode of choosing teams:
@@ -22,9 +24,18 @@ class TeamChooser extends Component {
     //,location: ""
   };
 
+  loadTeams = () => {
+    API.getTeams()
+    .then(res =>
+      this.setState({teams : res.data})
+    )
+    .catch(err => console.log(err));
+  }
+
   //wait until page loads and then be ready to submit the form (this may be useless)
   componentDidMount() {
     this.handleFormSubmit();
+    this.loadTeams();
   };
 
   //fxn for collecting user email and password and coordinates? should location 
@@ -65,6 +76,17 @@ render() {
             </Jumbotron>
 
             {/* code for drop down boxes showing teams of various leagues from the fyf_teams_db */}
+            {this.state.teams.length ? (
+            <List>
+            {this.state.teams.map(team => (
+              <ListItem key={team._id}>
+                {team.league} : {team.name}
+              </ListItem>
+            ))}
+          </List>
+            ) : (
+              <h3>No teams </h3>
+            )}
 
             {/* then add the selected team to the User DB in an array */}
 
