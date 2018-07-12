@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Wrapper from '../../components/Wrapper'
 import Jumbotron from '../../components/Jumbotron';
+import { FormBtn, Form, Input, FormGroup} from '../../components/Form'
 import { Col, Row, Container } from '../../components/Grid';
-import { Input, FormBtn } from '../../components/Form';
-import {List, ListItem } from '../../List';
+import {List, ListItem } from '../../components/List';
 import User from '../LogIn';
+
 
 //shows user email and teams chosen, simple.
 
@@ -15,9 +17,9 @@ class Profile extends Component {
 
   //probably not correct. It needs to collect the team names from the corresponding user ID
   componentDidMount() {
-    API.getTeams(this.props.match.params.id)
-      .then(res => this.setState({ teams: res.data }))
-      .catch(err => console.warn(err));
+    // API.getTeams(this.props.match.params.id)
+    //   .then(res => this.setState({ teams: res.data }))
+    //   .catch(err => console.warn(err));
   }
   //change password if text entered into fields
   handleInputChange = event => {
@@ -41,11 +43,11 @@ class Profile extends Component {
               {this.state.teams.length ? (
                 <List>
                   {this.state.teams.map(team => (
-                  <ListItem key={user._id}>
+                  <ListItem key={User._id}>
                       <strong>
                       {team.name} in {team.league}
                       </strong>
-                    <DeleteBtn onClick={() => this.deleteTeam(user._id)} />
+                    {/*<DeleteBtn onClick={() => this.deleteTeam(User._id)} /> */}
                   </ListItem>
                    ))}
                 </List>

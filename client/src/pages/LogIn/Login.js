@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
-import { Input, FormBtn } from '../../components/Form';
+import { Input, FormBtn, Form } from '../../components/Form';
+import Wrapper from "../../components/Wrapper"
 
 //collect email and password from user, may persist on reload
 class User extends Component {
@@ -21,14 +22,14 @@ class User extends Component {
   //be collected here or on the map screen...?
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    //event.preventDefault();
     if (this.state.email && this.state.password) {
-      API.saveUser({
-        email: this.state.email,
-        password: this.state.password
-        //,location: { lng: this.query.lng, lat: this.query.lat } (probably the wrong fucking format)
-      })
-      .catch(err => console.warn(err));
+      // API.saveUser({
+      //   email: this.state.email,
+      //   password: this.state.password
+      //   //,location: { lng: this.query.lng, lat: this.query.lat } (probably the wrong fucking format)
+      // })
+      // .catch(err => console.warn(err));
     }
   };
 

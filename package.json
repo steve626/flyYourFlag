@@ -24,10 +24,7 @@
     "seed2": "node scripts/seeds_faker.js",
     "test": "nodemon --exec mocha -R min --timeout 10000"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/steve626/flyYourFlag.git"
-  },
+  "repository": "git+https://github.com/steve626/flyYourFlag.git",
   "author": "dixosoft",
   "license": "ISC",
   "bugs": {
