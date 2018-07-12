@@ -7,38 +7,34 @@
     src: url('https://fonts.googleapis.com/css?family=Raleway')
 }
 
-/* H1 is the top text 'fly your flag' */
-
+/* Flag color */
 .fa{
    color:  #4dff88
-
 }
+
+/* H1 is the top text 'fly your flag' */
 h1 {
     text-align: center;
     font-family: 'Raleway', sans-serif;
     padding-top:20px;
-   color:white;
-    
-
+    color:white;
 }
 
 /* styling for the login button */
-.btn {
-    background-color: #4dff88;
+.btn{
+    background-color:#4dff88;
     color: black;
     margin-top:10px;
     width:100%;
-    
 }
+
+
 
 /* separates the login elements */
 .form-control {
-    
     margin-top:10px;
     width:100%;
-
 }
-
 
 /* Adds a background image */
 body{
@@ -53,9 +49,7 @@ body{
     transform: translate(-50%, -50%);
     background-size: cover;
     padding: 10px;
- 
-
-   }
+ }
 
 
 

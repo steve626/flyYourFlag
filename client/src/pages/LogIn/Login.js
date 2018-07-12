@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
-import { Input, FormBtn, Form, FormGroup } from '../../components/Form';
+import { Input, FormBtn, Form } from '../../components/Form';
 import Wrapper from "../../components/Wrapper"
 import './login.css';
 
@@ -60,11 +59,17 @@ class User extends Component {
                   placeholder='Password'
                 />
               
-              <FormBtn
-                primary={!(this.state.email && this.state.password)}
-                onClick={this.handleFormSubmit}
-                >
-                Log In
+                <FormBtn
+                  type='success'
+                  value={!(this.state.email && this.state.password)}
+                  onClick={this.handleFormSubmit}
+                  >
+                  Log In
+                </FormBtn>
+                <FormBtn 
+                  type='info'
+                  >
+                  Register 
               </FormBtn>
               </Form>
             </Col>
