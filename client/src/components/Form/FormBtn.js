@@ -3,9 +3,9 @@ import React from 'react';
 export const FormBtn = props => {
     let classes = 'btn ';
     switch(props.type){
-      case 'primary':
-        classes += 'btn-primary';
-      break;
+      // case 'primary':
+      //   classes += 'btn-primary';
+      // break;
       case 'success':
         classes += 'btn-success';
       break;

@@ -27,8 +27,7 @@ const PointSchema = new Schema({
 
 const teamSchema = new Schema({
   name: {
-    type: String,
-    required: true
+    type: String
   },
   League: {
     type: String    
