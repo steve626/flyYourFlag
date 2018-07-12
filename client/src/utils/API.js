@@ -7,5 +7,9 @@ export default {
     //Gets all teams
     getTeams: function() {
         return axios.get("/api/team")
+    },
+
+    saveUser: function(teamData) {
+      return axios.post("/api/team", teamData)
     }
-}
+};
