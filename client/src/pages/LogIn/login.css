@@ -7,49 +7,19 @@
     src: url('https://fonts.googleapis.com/css?family=Raleway')
 }
 
-/* Flag color */
-.fa{
-   color:  #4dff88
+.User-container-1 {
+   margin: auto;
 }
 
-/* H1 is the top text 'fly your flag' */
-h1 {
-    text-align: center;
-    font-family: 'Raleway', sans-serif;
-    padding-top:20px;
-    color:white;
-}
-
-/* styling for the login button */
-.btn{
-    background-color:#4dff88;
-    color: black;
-    margin-top:10px;
-    width:100%;
-}
-
-
-
-/* separates the login elements */
-.form-control {
-    margin-top:10px;
-    width:100%;
-}
-
-/* Adds a background image */
 body{
-    background-image: url('../../images/login.png');
+    background-image: url('../../images/shattered.png');
 }
 
-/* Adjusts the entire forms position */
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-size: cover;
-    padding: 10px;
- }
+h4 {
+    width:90%;
+
+
+}
 
 
 
