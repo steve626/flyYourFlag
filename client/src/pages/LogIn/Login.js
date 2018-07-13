@@ -75,16 +75,13 @@ class User extends Component {
                   type='info'
                   >
                   Register 
-
               </FormBtn>
               </Form>
             </Col>
           </Row>
         </Container>
       </Wrapper>
-
-  )};
-  
+  )};  
 }
 
 export default User;
