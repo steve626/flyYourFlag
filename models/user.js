@@ -13,7 +13,8 @@ const userSchema = new Schema({
       validator: (email) => email.length > 2,
         message:'must enter an email'
     },
-    required: [true, 'email is required']
+    required: [true, 'email is required'],
+    unique: true 
   },
   password: {
     type: String,
@@ -29,6 +30,6 @@ const userSchema = new Schema({
   geometry: [PointSchema]
 });
 
-const user = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = user;
+module.exports = User;
