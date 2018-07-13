@@ -73,71 +73,70 @@ const styles = theme => ({
         return (
           <div className='container'>
             <Grid>
+               {/* This is an empty container to move objects to the center */}
               <Row>
-
               <Col xs4={4} lg={12}>
-              {/* This is an empty container to move objects to the center */}
-              <h5>&nbsp;</h5>
+                 <h5>&nbsp;</h5>
               </Col>
-              </Row>
-             
+            </Row>
+
+             {/* Fly Your Flag banner */}
              <Row>
              <Col xs4={4} lg={12}>
-
-         <Typography variant="subheading" gutterBottom>
-            <h4>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h4>
-          </Typography>
-
-          </Col>
-          </Row>
-       
-
-         
-          <Row>
-          <Col xs4={4} lg={12}>
-           <FormControl className={classes.formControl}>
-             <InputLabel htmlFor="name-simple">Email</InputLabel>
-             <Input id="email" 
-               value={this.state.email} 
-               onChange={this.handleInputChange} 
-               name='email'
-               placeholder='Email'/>
-           </FormControl>
-           </Col>
-           </Row>
-          
-            <Row>
-            <Col xs4={4} lg={12}>
-            <FormControl className={classes.formControl} aria-describedby="name-helper-text">
-              <InputLabel htmlFor="name-helper">Password</InputLabel>
-              <Input id="password"
-               value={this.state.password}
-               onChange={this.handleInputChange}
-               name='password'
-               type='password'
-                />
-
-              <FormHelperText id="name-helper-text">Must be longer than 6 characters</FormHelperText>
-              </FormControl>
-
+              <Typography variant="subheading" gutterBottom>
+                <h4>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h4>
+              </Typography>
               </Col>
               </Row>
+
+              {/* Email input */}
+              <Row>
+               <Col xs4={4} lg={12}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel htmlFor="name-simple">Email</InputLabel>
+                  <Input id="email" 
+                  value={this.state.email} 
+                  onChange={this.handleInputChange} 
+                  name='email'
+                  placeholder='Email'/>
+                </FormControl>
+              </Col>
+            </Row>
+
+            {/* Password input */}
+            <Row>
+              <Col xs4={4} lg={12}>
+                <FormControl className={classes.formControl} aria-describedby="name-helper-text">
+                  <InputLabel htmlFor="name-helper">Password</InputLabel>
+                  <Input id="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                    name='password'
+                    type='password'
+                   />
+
+                  <FormHelperText id="name-helper-text">Must be longer than 6 characters</FormHelperText>
+                </FormControl>
+              </Col>
+            </Row>
+
+              {/* Login/Register Buttons */}
              <div className='buttons'>
               <Row>
-              <Col xs4={2} lg={6}>
-              <Button variant="contained" className={classes.button}>
+                <Col xs4={2} lg={6}>
+                  <Button variant="contained" className={classes.button}>
                    Log In
-                </Button>
+                  </Button>
                 </Col>
                 <Col xs4={2} lg={6}>
-                <Button variant="contained" className={classes.button}>
-                   Register
-                </Button>
+                  <Button variant="contained" className={classes.button}>
+                    Register
+                  </Button>
                 </Col>
-                </Row>
-                </div>
-              </Grid>
+               </Row>
               </div>
+            </Grid>
+          </div>
          
          
           
@@ -148,53 +147,6 @@ const styles = theme => ({
     User.propTypes = {
       classes: PropTypes.object.isRequired,
     };
-
-//   render() {
-//     return (
-//       <Wrapper>
-//         <Container>
-//           <Row>
-//             <Col size="sm-12">
-//             <h1>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h1>
-//             </Col>
-//           </Row>
-//           <Row>
-//             <Col size="sm-12">
-//               <Form>               
-//                 <Input          
-//                   value={this.state.email}
-//                   onChange={this.handleInputChange}
-//                   name='email'
-//                   placeholder='Email'
-//                 />
-//                 <Input
-//                   value={this.state.password}
-//                   onChange={this.handleInputChange}
-//                   name='password'
-//                   placeholder='Password'
-//                 />
-//                 <FormBtn
-//                   type='success'
-//                   value={!(this.state.email && this.state.password)}
-//                   onClick={this.handleFormSubmit}
-//                   >
-//                   Log In
-//                 </FormBtn>
-//                 <FormBtn 
-//                   type='info'
-//                   >
-//                   Register 
-
-//               </FormBtn>
-//               </Form>
-//             </Col>
-//           </Row>
-//         </Container>
-//       </Wrapper>
-
-//   )};
-  
-// }
 
 
 export default withStyles(styles)(User);
