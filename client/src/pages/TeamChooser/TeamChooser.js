@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Wrapper from "../../components/Wrapper"
-import Jumbotron from '../../components/Jumbotron';
+//import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
 import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
-import { List, ListItem } from "../../components/List"
+//import { List, ListItem } from "../../components/List"
 //import Teams from ''
 
 //psuedocode of choosing teams:
@@ -71,6 +71,7 @@ class TeamChooser extends Component {
           <Row>
             <Col size="sm-4">
             <h1>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h1>
+            <h3>Choose your favorite teams</h3>
             </Col>
           </Row>
 
@@ -100,6 +101,22 @@ class TeamChooser extends Component {
             </Col>
             <Col size="sm-8" />
           </Row>
+          <Row>
+            <Col size="sm-4">
+              <FormBtn type="primary" onClick={() => this.getLeagueTeams("NHL")}>
+                NHL
+            </FormBtn>
+            </Col>
+            <Col size="sm-8" />
+          </Row>
+          <Row>
+            <Col size="sm-4">
+              <FormBtn type="primary" onClick={() => this.getLeagueTeams("MLS")}>
+                MLS
+            </FormBtn>
+            </Col>
+            <Col size="sm-8" />
+          </Row>
 
           <Row>
             <Col size="sm-4">
@@ -107,7 +124,7 @@ class TeamChooser extends Component {
               {this.state.teams.length ? (
                 <select class="mt-3" style={{width:'100%'}}>
                   {this.state.teams.map(team => (
-                    <option value={team._id}>
+                    <option key ={ team._id} value={team._id}>
                       {team.name}
                     </option>
                   ))}
