@@ -7,5 +7,9 @@ export default {
     //Gets all teams
     getTeams: function() {
         return axios.get("/api/team")
+    },
+
+    getTeamsbyLeague : function(league) {
+        return axios.get("/api/team/" + league)
     }
 }

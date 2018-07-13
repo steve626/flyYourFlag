@@ -19,23 +19,15 @@ import {List, ListItem } from "../../components/List"
 
 class TeamChooser extends Component {
   state = {
-    teams: ""
+    teams: "",
+    league:""
     // ??? should we collect an initial location here? 
     //,location: ""
   };
 
-  loadTeams = () => {
-    API.getTeams()
-    .then(res =>
-      this.setState({teams : res.data})
-    )
-    .catch(err => console.log(err));
-  }
-
   //wait until page loads and then be ready to submit the form (this may be useless)
   componentDidMount() {
     this.handleFormSubmit();
-    this.loadTeams();
   };
 
   //fxn for collecting user email and password and coordinates? should location 
@@ -51,6 +43,14 @@ class TeamChooser extends Component {
       //   .catch(err => console.warn(err));
     }
   };
+
+  getLeagueTeams = league => {
+    console.log(league);
+    API.getTeamsbyLeague(league)
+    .then(res => 
+    this.setState({teams: res.data}))
+    .catch(err => console.log(err))
+  }
 
 // class Teams extends Component {
 //   constructor() {
@@ -74,16 +74,24 @@ render() {
               <h2>Fly Your Flag</h2>
               <h4>choose your favorite teams</h4>
             </Jumbotron>
-
+            <FormBtn onClick={() => this.getLeagueTeams("NFL")}>
+              NFL
+            </FormBtn>
+            <FormBtn onClick={() => this.getLeagueTeams("MLB")}>
+              MLB
+            </FormBtn>
+            <FormBtn onClick={() => this.getLeagueTeams("NBA")}>
+              NBA
+            </FormBtn>
             {/* code for drop down boxes showing teams of various leagues from the fyf_teams_db */}
             {this.state.teams.length ? (
-            <List>
+            <select>
             {this.state.teams.map(team => (
-              <ListItem key={team._id}>
-                {team.league} : {team.name}
-              </ListItem>
+              <option value={team._id}>
+                {team.name}
+              </option>
             ))}
-          </List>
+          </select>
             ) : (
               <h3>No teams </h3>
             )}

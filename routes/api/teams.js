@@ -7,6 +7,9 @@ router.route("/")
     .get(teamController.findAll)
     .post(teamController.create);
 
+router.route("/:league")
+    .get(teamController.findbyLeague);
+
 module.exports = router;
 
 //module.exports = (app) => {
