@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Col, Row, Container } from '../../components/Grid';
-import Wrapper from "../../components/Wrapper"
+// import { Col, Row, Container } from '../../components/Grid';
+// import Wrapper from "../../components/Wrapper"
 import './login.css';
 import API from "../../utils/API";
+import { Grid, Row, Col } from 'react-material-responsive-grid';
 
 // Material-UI
 import PropTypes from 'prop-types';
@@ -11,10 +12,12 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import flagBanner from '../../components/Form';
 import Typography from '@material-ui/core/Typography';
+import guttersGrid from '../../components/Form';
+import Paper from '@material-ui/core/Paper';
 
 
 const styles = theme => ({
@@ -28,7 +31,7 @@ const styles = theme => ({
   },
 });
 
-//collect email and password from user, may persist on reload
+
 //collect email and password from user, may persist on reload
 
 
@@ -67,22 +70,31 @@ const styles = theme => ({
 
      render() {
        const { classes } = this.props;
-   
-       return (
-       <div>
-        <Typography variant="subheading" gutterBottom>
+        return (
+          <div className='container'>
+            <Grid>
+              <Row>
+
+              <Col xs4={4} lg={12}>
+              {/* This is an empty container to move objects to the center */}
+              <h5>&nbsp;</h5>
+              </Col>
+              </Row>
+             
+             <Row>
+             <Col xs4={4} lg={12}>
+
+         <Typography variant="subheading" gutterBottom>
             <h4>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h4>
           </Typography>
-        
-        <Grid container justify = "center" style={{ minHeight: '100vh' }}   direction= 'column'>
-        
-        
-       
-         
-         <div className={classes.container}>
 
-         <Grid item xs>
+          </Col>
+          </Row>
+       
+
          
+          <Row>
+          <Col xs4={4} lg={12}>
            <FormControl className={classes.formControl}>
              <InputLabel htmlFor="name-simple">Email</InputLabel>
              <Input id="email" 
@@ -91,9 +103,11 @@ const styles = theme => ({
                name='email'
                placeholder='Email'/>
            </FormControl>
-          </Grid>
-
-           <Grid item xs>
+           </Col>
+           </Row>
+          
+            <Row>
+            <Col xs4={4} lg={12}>
             <FormControl className={classes.formControl} aria-describedby="name-helper-text">
               <InputLabel htmlFor="name-helper">Password</InputLabel>
               <Input id="password"
@@ -105,20 +119,25 @@ const styles = theme => ({
 
               <FormHelperText id="name-helper-text">Must be longer than 6 characters</FormHelperText>
               </FormControl>
-              </Grid>
 
-              <Grid item xs>
-              
+              </Col>
+              </Row>
+             <div className='buttons'>
+              <Row>
+              <Col xs4={2} lg={6}>
               <Button variant="contained" className={classes.button}>
                    Log In
                 </Button>
-                </Grid>
-            </div>
-            </Grid>
-            </div>
-          
-            
-          
+                </Col>
+                <Col xs4={2} lg={6}>
+                <Button variant="contained" className={classes.button}>
+                   Register
+                </Button>
+                </Col>
+                </Row>
+                </div>
+              </Grid>
+              </div>
          
          
           

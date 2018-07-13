@@ -15,12 +15,29 @@ body{
     background-image: url('../../images/shattered.png');
 }
 
+.container {
+    text-align: center;
+    
+}
 
 h4 {
-    width:90%;
-
-
+    font-family: 'Raleway';
 }
+
+h5 {
+    margin-bottom:10rem;
+}
+
+.fa {
+    color:#00cc00;
+}
+
+.buttons {
+    margin-top:50px;
+}
+
+
+
 
 
 
