@@ -28,7 +28,13 @@ h1 {
     width:100%;
 }
 
-
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    margin-top:10px;
+    width:100%;
+}
 
 /* separates the login elements */
 .form-control {

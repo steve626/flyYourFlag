@@ -11,7 +11,7 @@ export default {
 
     getTeamsbyLeague : function(league) {
         return axios.get("/api/team/" + league)
-    }
+    },
   
     saveUser: function(teamData) {
       return axios.post("/api/team", teamData)

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Wrapper from "../../components/Wrapper"
 import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
-import { FormBtn }  from '../../components/Form';
+import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
-import {List, ListItem } from "../../components/List"
+import { List, ListItem } from "../../components/List"
 //import Teams from ''
 
 //psuedocode of choosing teams:
@@ -20,7 +20,7 @@ import {List, ListItem } from "../../components/List"
 class TeamChooser extends Component {
   state = {
     teams: "",
-    league:""
+    league: ""
     // ??? should we collect an initial location here? 
     //,location: ""
   };
@@ -47,71 +47,97 @@ class TeamChooser extends Component {
   getLeagueTeams = league => {
     console.log(league);
     API.getTeamsbyLeague(league)
-    .then(res => 
-    this.setState({teams: res.data}))
-    .catch(err => console.log(err))
+      .then(res =>
+        this.setState({ teams: res.data }))
+      .catch(err => console.log(err))
   }
 
-// class Teams extends Component {
-//   constructor() {
-//     super();
+  // class Teams extends Component {
+  //   constructor() {
+  //     super();
 
 
-//     let Teams = this.props.state.Teams;
-// /*     let optionItems = Teams.map((league) => {
-    
-//     } */
-//   }
-// };
+  //     let Teams = this.props.state.Teams;
+  // /*     let optionItems = Teams.map((league) => {
 
-render() {
-  return (
-    <Wrapper>
-      <Container>
-        <Row>
-          <Col size="sm-4">
-            <Jumbotron>
-              <h2>Fly Your Flag</h2>
-              <h4>choose your favorite teams</h4>
-            </Jumbotron>
-            <FormBtn onClick={() => this.getLeagueTeams("NFL")}>
-              NFL
+  //     } */
+  //   }
+  // };
+
+  render() {
+    return (
+      <Wrapper>
+        <Container>
+          <Row>
+            <Col size="sm-4">
+            <h1>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h1>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col size="sm-4">
+              <FormBtn type="primary" onClick={() => this.getLeagueTeams("NFL")}>
+                NFL
             </FormBtn>
-            <FormBtn onClick={() => this.getLeagueTeams("MLB")}>
-              MLB
-            </FormBtn>
-            <FormBtn onClick={() => this.getLeagueTeams("NBA")}>
-              NBA
-            </FormBtn>
-            {/* code for drop down boxes showing teams of various leagues from the fyf_teams_db */}
-            {this.state.teams.length ? (
-            <select>
-            {this.state.teams.map(team => (
-              <option value={team._id}>
-                {team.name}
-              </option>
-            ))}
-          </select>
-            ) : (
-              <h3>No teams </h3>
-            )}
+            </Col>
+            <Col size="sm-8" />
+          </Row>
 
-            {/* then add the selected team to the User DB in an array */}
+          <Row>
+            <Col size="sm-4">
+              <FormBtn type="primary" onClick={() => this.getLeagueTeams("MLB")}>
+                MLB
+            </FormBtn>
+            </Col>
+            <Col size="sm-8" />
+          </Row>
 
-            <FormBtn
-              disabled={!(this.state.team)}
-              onClick={this.handleFormSubmit}
-            >
-              Submit
+          <Row>
+            <Col size="sm-4">
+              <FormBtn type="primary" onClick={() => this.getLeagueTeams("NBA")}>
+                NBA
+            </FormBtn>
+            </Col>
+            <Col size="sm-8" />
+          </Row>
+
+          <Row>
+            <Col size="sm-4">
+              {/* code for drop down boxes showing teams of various leagues from the fyf_teams_db */}
+              {this.state.teams.length ? (
+                <select class="mt-3" style={{width:'100%'}}>
+                  {this.state.teams.map(team => (
+                    <option value={team._id}>
+                      {team.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                  <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>No teams </h3>
+                )}
+
+              {/* then add the selected team to the User DB in an array */}
+            </Col>
+            <Col size="sm-8" />
+          </Row>
+
+          <Row>
+            <Col size="sm-4">
+              <FormBtn
+                disabled={!(this.state.team)}
+                onClick={this.handleFormSubmit}
+              >
+                Submit
               </FormBtn>
-          </Col>
-        </Row>
-      </Container>
-    </Wrapper>
+            </Col>
+            <Col size="sm-8" />
+          </Row>
+        </Container>
+      </Wrapper>
 
-  )
-};
-  
+    )
+  };
+
 }
 
 export default TeamChooser;
