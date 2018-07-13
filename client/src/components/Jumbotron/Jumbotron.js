@@ -3,7 +3,7 @@ import './Jumbotron.css';
 
 const Jumbotron = ({ children }) => (
   <div
-    style={{ height: 300, clear: 'both', paddingTop: 120, textAlign: 'center' }}
+    style={{ height: 100, textAlign: 'center' }}
     className='jumbotron'
   >
     {children}
