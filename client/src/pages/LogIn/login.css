@@ -33,9 +33,16 @@ h5 {
 }
 
 .buttons {
-    margin-top:50px;
+    margin-top:25px;
 }
 
+.logIn {
+    margin-left:20px;
+}
+
+.btn {
+    margin:auto;
+}
 
 
 

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import { Col, Row, Container } from '../../components/Grid';
-// import Wrapper from "../../components/Wrapper"
 import './login.css';
 import API from "../../utils/API";
 import { Grid, Row, Col } from 'react-material-responsive-grid';
+import { Button } from 'react-bootstrap';
 
 // Material-UI
 import PropTypes from 'prop-types';
@@ -12,8 +11,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-// import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import flagBanner from '../../components/Form';
 import Typography from '@material-ui/core/Typography';
 import guttersGrid from '../../components/Form';
@@ -121,20 +118,21 @@ const styles = theme => ({
             </Row>
 
               {/* Login/Register Buttons */}
-             <div className='buttons'>
+              <div className='buttons'>
               <Row>
-                <Col xs4={2} lg={6}>
-                  <Button variant="contained" className={classes.button}>
+                <Col middle xs4={2} lg={2}>
+                  <Button bsStyle="success" className='LogIn'>
                    Log In
-                  </Button>
+                   </Button>
                 </Col>
-                <Col xs4={2} lg={6}>
-                  <Button variant="contained" className={classes.button}>
+                <Col middle xs4={2} lg={2}>
+                  <Button bsStyle="warning" className='Register'>
                     Register
                   </Button>
                 </Col>
                </Row>
-              </div>
+               </div>
+              {/* </div> */}
             </Grid>
           </div>
          
