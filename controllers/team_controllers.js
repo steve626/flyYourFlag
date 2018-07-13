@@ -9,6 +9,13 @@ module.exports = {
     .catch(err => res.status(422).json(err));
   },
 
+  findbyLeague(req, res) {
+    team.find()
+    .where({league : req.params.league})
+    .then(teamModel => res.json(teamModel))
+    .catch(err => res.status(422).json(err));
+  },
+
   create(req, res, next) {
     const teamProps = req.body;
 

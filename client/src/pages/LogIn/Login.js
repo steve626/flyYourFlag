@@ -102,6 +102,7 @@ const styles = theme => ({
                name='password'
                type='password'
                 />
+
               <FormHelperText id="name-helper-text">Must be longer than 6 characters</FormHelperText>
               </FormControl>
               </Grid>
@@ -175,5 +176,6 @@ const styles = theme => ({
 //   )};
   
 // }
+
 
 export default withStyles(styles)(User);
