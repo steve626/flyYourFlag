@@ -125,12 +125,14 @@ const styles = theme => ({
               <div className='buttons'>
               <Row>
                 <Col sm={12}>
-                  <Button bsStyle="success" className='LogIn'>
-                   Log In
+                {/* This should take the user to the profile page */}
+                  <Button bsStyle="success" className='LogIn' >
+                     Log In
                    </Button>
                    &nbsp;
                    &nbsp;
-                 <Button bsStyle="warning" className='Register'>
+                 <Button bsStyle="warning" className='Register'  onClick={this.handleFormSubmit}>
+                
                     Register
                   </Button>
                 </Col>
