@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import { Grid, Row, Col } from 'react-material-responsive-grid';
 import { Button } from 'react-bootstrap';
 
+
 // Material-UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -68,10 +69,14 @@ const styles = theme => ({
      render() {
        const { classes } = this.props;
         return (
+         
           <div className='container'>
+         
+           
             <Grid>
-               {/* This is an empty container to move objects to the center */}
-              <Row>
+                            
+             {/* This is an empty container to move objects to the center */}
+            <Row>
               <Col xs4={4} lg={12}>
                  <h5>&nbsp;</h5>
               </Col>
@@ -111,7 +116,6 @@ const styles = theme => ({
                     name='password'
                     type='password'
                    />
-
                   <FormHelperText id="name-helper-text">Must be longer than 6 characters</FormHelperText>
                 </FormControl>
               </Col>
@@ -120,24 +124,20 @@ const styles = theme => ({
               {/* Login/Register Buttons */}
               <div className='buttons'>
               <Row>
-                <Col middle xs4={2} lg={2}>
+                <Col sm={12}>
                   <Button bsStyle="success" className='LogIn'>
                    Log In
                    </Button>
-                </Col>
-                <Col middle xs4={2} lg={2}>
-                  <Button bsStyle="warning" className='Register'>
+                   &nbsp;
+                   &nbsp;
+                 <Button bsStyle="warning" className='Register'>
                     Register
                   </Button>
                 </Col>
                </Row>
-               </div>
-              {/* </div> */}
+             </div>
             </Grid>
           </div>
-         
-         
-          
         );
       }
     }

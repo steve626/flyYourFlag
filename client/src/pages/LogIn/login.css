@@ -13,6 +13,8 @@
 
 body{
     background-image: url('../../images/shattered.png');
+    
+
 }
 
 .container {
@@ -24,6 +26,9 @@ h4 {
     font-family: 'Raleway';
 }
 
+#name-helper-text{
+    font-family: 'Raleway';
+}
 h5 {
     margin-bottom:10rem;
 }
@@ -34,15 +39,17 @@ h5 {
 
 .buttons {
     margin-top:25px;
+    margin-right:20px;
 }
 
 .logIn {
-    margin-left:20px;
+    margin-right:20px;
 }
 
-.btn {
-    margin:auto;
+.jumbotron {
+    width:20px !important;
 }
+
 
 
 
