@@ -27,7 +27,7 @@ const userSchema = new Schema({
   teams: {
     type: [String]
   },
-  geometry: [PointSchema]
+  coordinates: [PointSchema]
 });
 
 const User = mongoose.model('User', userSchema);

@@ -37,6 +37,20 @@ module.exports = {
     
   },
 
+  getAllUsers(req, res) {
+    user.find(req.query)
+      .then(userModel => {
+        res.json(userModel);})
+      .catch(err => console.log(err));
+  },
+
+  getUsersByTeam(req, res) {
+    user.find()
+    .where({team : req.params.team})
+    .then(userModel => res.json(userModel))
+    .catch(err => res.status(422).json(err));
+  },
+
   edit(req,res,next) {
     const userId = req.params.id;
     const userProps = req.body;
