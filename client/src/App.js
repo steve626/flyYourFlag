@@ -6,11 +6,12 @@ import Profile from './pages/Profile';
 import TeamChooser from './pages/TeamChooser';
 import NoMatch from './pages/NoMatch';
 import View from './components/View';
+// import ComposedTextField from './pages/testlogin';
+
 
 const App = () => (
   <Router>
     <div>
-      
       <Switch>
         <Route exact path = '/view' component = {View} />
         <Route exact path = '/' component = {LogIn} />
