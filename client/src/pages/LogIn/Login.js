@@ -73,6 +73,8 @@ class User extends Component {
                 </FormBtn>
                 <FormBtn 
                   type='info'
+                  value={!(this.state.email && this.state.password)}
+                  onClick={this.handleFormSubmit}
                   >
                   Register 
               </FormBtn>

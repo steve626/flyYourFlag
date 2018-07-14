@@ -34,13 +34,8 @@ class TeamChooser extends Component {
   //be collected here or on the map screen...?
 
   handleFormSubmit = event => {
-    //event.preventDefault();
     if (this.state.team) {
-      // API.saveTeams({
-      //   teams: this.state.teams
-      //   //,location: { lng: this.query.lng, lat: this.query.lat } (probably the wrong fucking format)
-      // })
-      //   .catch(err => console.warn(err));
+      
     }
   };
 
@@ -71,7 +66,7 @@ class TeamChooser extends Component {
           <Row>
             <Col size="sm-4">
             <h1>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h1>
-            <h3>Choose your favorite teams</h3>
+            <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>Choose your favorite team </h3>
             </Col>
           </Row>
 
@@ -130,7 +125,7 @@ class TeamChooser extends Component {
                   ))}
                 </select>
               ) : (
-                  <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>No teams </h3>
+                  <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>Choose a league </h3>
                 )}
 
               {/* then add the selected team to the User DB in an array */}
