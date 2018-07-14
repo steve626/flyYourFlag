@@ -187,14 +187,14 @@ mongoose.connection
         email: (i+faker.internet.email()),
         password: faker.internet.password(),
         team: teamArray[randomTeam(0, 148)],
-        geometry:{
-          lng: randomBetween(-111.85, -111.80),
-          lat: randomBetween(33.5, 33.3)
+        coordinates:{
+          lat: randomBetween(33.5, 33.3),
+          lng: randomBetween(-111.85, -111.80)          
         }
       };
   }
 }
-function randomBetween(min, max) {
+function randomBetween(max, min) {
   return Number.parseFloat((Math.random() * (max-min)) + min).toPrecision(5);
 };
 

@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Map,  Marker, GoogleApiWrapper } from "google-maps-react";
-import { Col, Row, Container } from '../../components/Grid';
-import { FormBtn } from '../../components/Form';
+// import { Col, Row, Container } from '../../components/Grid';
+// import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
 
-export class MapContainer extends Component {
+export class MapView extends Component {
 state = {
-  User: '',
-  teams: ''
+  users: '',
+  teams: '',
+  geography: [],
+  team: 'Phoenix Suns'
 };
 
   constructor(props) {
@@ -26,19 +28,22 @@ state = {
       showingInfoWindow: true
     });
   }
-  getUserTeams = team => {
-    console.log(team);
-    API.getTeamsbyUser(team)
-      .then(res =>
-        this.setState({ users: res.data }))
-      .catch(err => console.log(err))
-  }
+//match fans of team that OP selects on teamChooser page
+  renderFans() {
+    return users.team.map( coordinates =>
+    <Marker 
+    position={ { lat: coordinates.lat, lng: coordinates.lng } }
+    />
+   );
+    }
+  
+
+   
   
   render() {
     if (!this.props.google) {
       return <div>Loading...</div>;
     }
-
     return (
       <div
         style={{
@@ -53,12 +58,10 @@ state = {
         onClick = { this.onMapClick } 
         initialCenter = {{ lat: 33.356, lng: -111.79 }}
         zoom={16}>
-          <Marker
-            
-            position={{lat: 33.356, lng: -111.79}}
-            name={"Current location"}
-          />
+           {this.renderFans()}
+          
         </Map>
+      
       
       {/* <Row>
             <Col size="sm-4">
@@ -86,4 +89,4 @@ state = {
 
 export default GoogleApiWrapper({
   apiKey: "AIzaSyBxQES5wS9zWkEtfsdjVPJXDxXXlH8FMzA"
-})(MapContainer);
+})(MapView);
