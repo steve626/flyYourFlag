@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import { Map,  Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 // import { Col, Row, Container } from '../../components/Grid';
 // import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
 
 export class MapView extends Component {
-state = {
-  users: '',
-  teams: '',
-  geography: [],
-  team: 'Phoenix Suns'
-};
+  state = {
+    users: '',
+    teams: '',
+    geography: [],
+    team: 'Phoenix Suns'
+  };
 
   constructor(props) {
     super(props);
@@ -21,6 +21,11 @@ state = {
       selectedPlace: {}
     };
   }
+
+  componentDidMount() {
+    this.getUsers();
+  }
+
   onMarkerClick(props, marker, e) {
     this.setState({
       selectedPlace: props,
@@ -28,42 +33,43 @@ state = {
       showingInfoWindow: true
     });
   }
-//match fans of team that OP selects on teamChooser page
-  renderFans() {
-    return users.team.map( coordinates =>
-    <Marker 
-    position={ { lat: coordinates.lat, lng: coordinates.lng } }
-    />
-   );
-    }
-  
 
-   
-  
+  getUsers() {
+    console.log("getting users");
+    API.getUsers().then(res => {
+      var datapartial = res.data.slice(0, 500)
+      this.setState({ users: datapartial })
+    }
+    )
+      .catch(err => console.log(err));
+  }
+
   render() {
-    if (!this.props.google) {
+    if (!this.props.google || !this.state.users) {
       return <div>Loading...</div>;
     }
     return (
+
       <div
         style={{
           height: "80vh",
           width: "100vw"
         }}
       >
-        <Map style={{height: "80vh",
-          width: "100vw"
-          }} 
-        google={this.props.google}
-        onClick = { this.onMapClick } 
-        initialCenter = {{ lat: 33.356, lng: -111.79 }}
-        zoom={16}>
-           {this.renderFans()}
-          
-        </Map>
-      
-      
-      {/* <Row>
+
+          <Map style={{
+            height: "80vh",
+            width: "100vw"
+          }}
+            google={this.props.google}
+            onClick={this.onMapClick}
+            initialCenter={{ lat: 33.356, lng: -111.79 }}
+            zoom={16} >
+            {this.state.users.map(user =>
+              <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
+            )}
+          </Map>
+        {/* <Row>
             <Col size="sm-4">
               {this.state.users.length ? (
                 <select class="mt-3" style={{width:'100%'}}>
@@ -80,9 +86,6 @@ state = {
             <Col size="sm-8" />
       </Row> */}
       </div>
-
-
-
     );
   }
 }

@@ -13,8 +13,12 @@ export default {
         return axios.get("/api/team/" + league)
     },
   
-    saveUser: function(teamData) {
+    saveTeam: function(teamData) {
       return axios.post("/api/team", teamData)
 
+    },
+
+    getUsers: function() {
+        return axios.get("/api/users");
     }
 };
