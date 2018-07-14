@@ -100,34 +100,53 @@ const styles = theme => ({
                   value={this.state.email} 
                   onChange={this.handleInputChange} 
                   name='email'
-                  placeholder='Email'
-                />
-                <Input
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  name='password'
-                  placeholder='Password'
-                />
-                <FormBtn
-                  type='success'
-                  value={!(this.state.email && this.state.password)}
-                  onClick={this.handleFormSubmit}
-                  >
-                  Log In
-                </FormBtn>
-                <FormBtn 
-                  type='info'
-                  value={!(this.state.email && this.state.password)}
-                  onClick={this.handleFormSubmit}
-                  >
-                  Register 
-              </FormBtn>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
-      </Wrapper>
-  )};  
-}
+                  placeholder='Email'/>
+                </FormControl>
+              </Col>
+            </Row>
 
-export default User;
+            {/* Password input */}
+            <Row>
+              <Col xs4={4} lg={12}>
+                <FormControl className={classes.formControl} aria-describedby="name-helper-text">
+                  <InputLabel htmlFor="name-helper">Password</InputLabel>
+                  <Input id="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                    name='password'
+                    type='password'
+                   />
+                  <FormHelperText id="name-helper-text">Must be longer than 6 characters</FormHelperText>
+                </FormControl>
+              </Col>
+            </Row>
+
+              {/* Login/Register Buttons */}
+              <div className='buttons'>
+              <Row>
+                <Col sm={12}>
+                {/* This should take the user to the profile page */}
+                  <Button bsStyle="success" className='LogIn' >
+                     Log In
+                   </Button>
+                   &nbsp;
+                   &nbsp;
+                 <Button bsStyle="warning" className='Register'  onClick={this.handleFormSubmit}>
+                
+                    Register
+                  </Button>
+                </Col>
+               </Row>
+             </div>
+            </Grid>
+          </div>
+        );
+      }
+    }
+    
+    User.propTypes = {
+      classes: PropTypes.object.isRequired,
+    };
+
+
+export default withStyles(styles)(User);
