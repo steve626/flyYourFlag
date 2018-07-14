@@ -189,7 +189,7 @@ mongoose.connection
         team: teamArray[randomTeam(0, 148)],
         coordinates:{
           lat: randomBetween(33.5, 33.3),
-          lng: randomBetween(-111.85, -111.80)          
+          lng: randomBetween(-111.90, -111.75)          
         }
       };
   }
