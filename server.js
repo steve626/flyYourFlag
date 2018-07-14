@@ -1,14 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-<<<<<<< HEAD
-=======
 //const routes = require("./routes");
 const app = express();
 
 const bodyParser = require("body-parser");
 
->>>>>>> 6fb50649a6296debb298128f5952537e264d0943
 const routes = require("./routes");
 const app = express();
 

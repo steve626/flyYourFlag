@@ -122,12 +122,12 @@ const styles = theme => ({
                   >
                   Register 
               </FormBtn>
-              </Form>
+              </FormControl>
             </Col>
-          </Row>
-        </Container>
-      </Wrapper>
-  )};  
+          </Row> 
+        </Grid>
+      </div>         
+  )}
 }
 
 export default User;
