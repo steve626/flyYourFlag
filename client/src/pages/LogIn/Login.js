@@ -12,7 +12,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import flagBanner from '../../components/Form';
 import Typography from '@material-ui/core/Typography';
 import guttersGrid from '../../components/Form';
 import Paper from '@material-ui/core/Paper';
