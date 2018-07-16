@@ -29,6 +29,8 @@ const styles = theme => ({
   },
 });
 
+const isLoggedIn = false;
+
 
 //collect email and password from user, may persist on reload
 
@@ -39,16 +41,55 @@ const styles = theme => ({
   //fxn for collecting user email and password and coordinates? should location 
   //be collected here or on the map screen...?
 
-  // handleFormSubmit = () => {
-  //     if (this.state.email && this.state.password) {
-  //     API.saveUser({
-  //       email: this.state.email,
-  //       password: this.state.password
-  //       //,location: { lng: this.query.lng, lat: this.query.lat } (probably the wrong fucking format)
-  //     })
-  //     .catch(err => console.warn(err));
-  //   }
-  // };
+  handleFormRegister = () => {
+      if (this.state.email && this.state.password) {
+      API.createUser({
+        email: this.state.email,
+        password: this.state.password        
+      })
+      .catch(err => console.warn(err));
+    } const newUser = new User ({
+      email: this.state.email,
+      password: this.state.password,
+      teams:[]
+    })
+    newUser.save()
+    .then(set(isLoggedIn = true)
+        //sets local storage to not ask for pw again
+        .then(localStorage.setItem('isLoggedIn', true))
+        //changes page to choose teams
+        .then(window.location.assign('/TeamChooser'))
+      } else {
+        window.alert("sorry, please try again");
+      }    
+  };
+
+  handleFormLogIn = () => {
+    //checks if there's an email and password entered
+    if (this.state.email && this.state.password) {
+      //checks the users DB to see if there's an email on record
+    db.collection('users').findOne({ email: req.body.email}, function(err, user) {
+      console.log('user found')
+      .catch(err => {
+        console.warn(err)
+      })
+      //checks to see if user and pw match
+      if (user && user.password === req.body.password) {
+        console.log('user and password are correct')
+        //???? not right?
+        .then(set(isLoggedIn = true)
+        //sets local storage to not ask for pw again
+        .then(localStorage.setItem('isLoggedIn', true))
+        //changes page to mapview
+        .then(window.location.assign('/MapView'))
+      } else {
+        window.alert("sorry, please try again");
+      }    
+    }
+  } 
+} else {
+  window.alert('please enter an email and password');
+};
 
 
   class User extends Component {
@@ -126,12 +167,12 @@ const styles = theme => ({
               <Row>
                 <Col sm={12}>
                 {/* This should take the user to the profile page */}
-                  <Button bsStyle="success" className='LogIn' >
+                  <Button bsStyle="success" className='LogIn' onClick={this.handleFormLogIn} >
                      Log In
                    </Button>
                    &nbsp;
                    &nbsp;
-                 <Button bsStyle="warning" className='Register'  onClick={this.handleFormSubmit}>
+                 <Button bsStyle="warning" className='Register'  onClick={this.handleFormRegister}>
                 
                     Register
                   </Button>
