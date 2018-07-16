@@ -13,13 +13,14 @@
 
 body{
     background-image: url('../../images/shattered.png');
+    zoom:140%;
     
 
 }
 
 .container {
     text-align: center;
-    
+    height:100%;
 }
 
 h4 {
