@@ -10,14 +10,14 @@ import Wrapper from './components/Wrapper';
 
 
 
+
 const App = () => (
   <Router>
     <div>
-    {/* <Navbar/> */}
     <BarNav />
     <Wrapper>
       <Switch>
-        <Route exact path = '/' component = {newLogin} />
+      <Route exact path = '/' component = {newLogin} />
         <Route exact path = '/MapView' component = {MapView} />
         <Route exact path = '/Profile' component = {Profile} />
         <Route exact path = '/TeamChooser' component = {TeamChooser} />
