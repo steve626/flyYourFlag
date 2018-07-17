@@ -71,9 +71,9 @@ class User1 extends Component {
            {/* <Wrapper> */}
               <Grid>
                 <Row className='email'>
-                  <Col lg={12} xs={10}>
+                  <Col lg={12} xs={12}>
                     <FormControl className={classes.textField} >
-                      <InputLabel htmlFor="name-simple" style={{ fontSize: '20px', fontFamily: 'Raleway'}}>Email</InputLabel>
+                      <InputLabel htmlFor="email-simple" style={{ fontSize: '20px', fontFamily: 'Raleway'}}>Email</InputLabel>
                         <Input style={{padding: '0px 0px 5px'}}
                         className={classes.textField}
                          name='email'
@@ -84,9 +84,9 @@ class User1 extends Component {
                   </Col>
                 </Row>
                 <Row className='password'>
-                  <Col lg={12} xs={10}>
+                  <Col lg={12} xs={12}>
                     <FormControl className={classes.textField} >
-                      <InputLabel htmlFor="name-simple"   style={{fontSize: '20px', fontFamily: 'Raleway' }}>Password</InputLabel>
+                      <InputLabel htmlFor="password-simple"   style={{fontSize: '20px', fontFamily: 'Raleway' }}>Password</InputLabel>
                         <Input style={{padding: '0px 0px 5px'}}
                          className={classes.textField}
                          type='password'                         
