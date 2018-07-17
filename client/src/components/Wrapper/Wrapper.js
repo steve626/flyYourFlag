@@ -1,6 +1,6 @@
 import React from 'react';
 import './Wrapper.css';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row} from 'react-bootstrap';
 
 const Wrapper = props => (
 

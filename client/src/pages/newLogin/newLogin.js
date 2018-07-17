@@ -1,12 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 // import {FormGroup, Form, Button, ControlLabel, FormControl, Checkbox} from 'react-bootstrap';
 import {Grid, Col, Row} from 'react-bootstrap';
-import Wrapper from '../../components/Wrapper';
 import './newLogin.css';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import green from '@material-ui/core/colors/yellow'
 import Button from '@material-ui/core/Button';
@@ -36,10 +34,6 @@ const styles = theme => ({
     'label + &': {
       marginTop: theme.spacing.unit * 3,
     },
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -106,10 +100,10 @@ class User1 extends Component {
                 <div className='but'>
                  <Row>
                   <Col md={12} xs={12}>
-                    <Button variant="outlined" color="primary" style={{fontFamily: 'Raleway'}}className={classes.button}>
+                    <Button variant='contained' color="primary" style={{fontFamily: 'Raleway'}}className={classes.button}>
                       Login
                     </Button>
-                    <Button variant="outlined" color="default" style={{fontFamily: 'Raleway'}} className={classes.button}>
+                    <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button}>
                       Register
                     </Button>
                   </Col>
