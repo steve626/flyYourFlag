@@ -37,7 +37,7 @@ export class MapView extends Component {
   getUsers() {
     console.log("getting users");
     API.getUsers().then(res => {
-      var datapartial = res.data.slice(0, 500)
+      var datapartial = res.data.slice(0, 150)
       this.setState({ users: datapartial })
     }
     )
