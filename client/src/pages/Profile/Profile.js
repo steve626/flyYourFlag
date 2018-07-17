@@ -4,7 +4,7 @@ import Jumbotron from '../../components/Jumbotron';
 import { FormBtn, Form, Input } from '../../components/Form'
 import { Col, Row, Container } from '../../components/Grid';
 import {List, ListItem } from '../../components/List';
-import User from '../LogIn';
+import User from '../newLogin';
 
 
 //shows user email and teams chosen, simple.

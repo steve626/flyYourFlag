@@ -1,3 +1,13 @@
-.wrapper {
-  
+body {
+    background-image: url('../../images/shattered.png');
 }
+
+.wrapper {
+    
+    margin: 0 auto;
+}
+
+
+
+
+
