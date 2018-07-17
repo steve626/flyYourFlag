@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('../models');
-const faker = require('faker.seed(123)');
+const faker = require('faker');
 
 //const minUsers = 200;
 const usersToAdd = 15000;
