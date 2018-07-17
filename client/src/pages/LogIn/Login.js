@@ -29,7 +29,24 @@ const styles = theme => ({
   },
 });
 
-const isLoggedIn = false;
+  class User extends Component {
+    state = {
+      email: "",
+      password: "",
+      isLoggedIn: false
+      // ??? should we collect an initial location here? 
+      //,location: ""
+    };
+
+    handleInputChange = event => {
+      const { name, value } = event.target;
+         this.setState({
+           [name]: value
+         });
+     };
+
+     
+
 
 
 //collect email and password from user, may persist on reload
@@ -92,20 +109,6 @@ const isLoggedIn = false;
 };
 
 
-  class User extends Component {
-    state = {
-      email: "",
-      password: ""
-      // ??? should we collect an initial location here? 
-      //,location: ""
-    };
-
-    handleInputChange = event => {
-      const { name, value } = event.target;
-         this.setState({
-           [name]: value
-         });
-     };
 
      render() {
        const { classes } = this.props;

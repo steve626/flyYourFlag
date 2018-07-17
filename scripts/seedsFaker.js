@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('../models');
-const faker = require('faker');
+const faker = require('faker.seed(123)');
 
 //const minUsers = 200;
 const usersToAdd = 15000;
@@ -186,7 +186,10 @@ mongoose.connection
       newUsers[i] = {
         email: (i+faker.internet.email()),
         password: faker.internet.password(),
-        team: teamArray[randomTeam(0, 148)],
+        teams: [teamArray[randomTeam(0, 74)],
+               teamArray[randomTeam(75, 148)]
+      ],
+              
         coordinates:{
           lat: randomLAT(33.39, 33.32),
           lng: randomLNG(-111.85, -111.75)          
