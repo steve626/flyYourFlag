@@ -79,7 +79,7 @@ class User1 extends Component {
                 <Row className='email'>
                   <Col lg={12} xs={10}>
                     <FormControl className={classes.textField} >
-                      <InputLabel htmlFor="name-simple" style={{ fontSize: '20px' }}>Email</InputLabel>
+                      <InputLabel htmlFor="name-simple" style={{ fontSize: '20px', fontFamily: 'Raleway'}}>Email</InputLabel>
                         <Input style={{padding: '0px 0px 5px'}}
                         className={classes.textField}
                          name='email'
@@ -92,7 +92,7 @@ class User1 extends Component {
                 <Row className='password'>
                   <Col lg={12} xs={10}>
                     <FormControl className={classes.textField} >
-                      <InputLabel htmlFor="name-simple"   style={{fontSize: '20px' }}>Password</InputLabel>
+                      <InputLabel htmlFor="name-simple"   style={{fontSize: '20px', fontFamily: 'Raleway' }}>Password</InputLabel>
                         <Input style={{padding: '0px 0px 5px'}}
                          className={classes.textField}
                          type='password'                         
@@ -106,10 +106,10 @@ class User1 extends Component {
                 <div className='but'>
                  <Row>
                   <Col md={12} xs={12}>
-                    <Button variant="outlined" color="primary" className={classes.button}>
+                    <Button variant="outlined" color="primary" style={{fontFamily: 'Raleway'}}className={classes.button}>
                       Login
                     </Button>
-                    <Button variant="outlined" color="default" className={classes.button}>
+                    <Button variant="outlined" color="default" style={{fontFamily: 'Raleway'}} className={classes.button}>
                       Register
                     </Button>
                   </Col>

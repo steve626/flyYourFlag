@@ -59,7 +59,7 @@ function BarNav(props) {
         <Toolbar>
          <Grid>
              <Row className='text-center'>
-          <Typography variant="title" color='secondary' className={classes.flex}>
+          <Typography variant="title" color='secondary' style={{fontFamily:'Raleway'}} className={classes.flex} >
             Fly Your Flag 
           </Typography>
           </Row>
