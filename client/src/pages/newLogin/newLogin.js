@@ -58,7 +58,8 @@ class User1 extends Component {
   state = {
     email: "",
     password: "",
-    isLoggedIn: false
+    isLoggedIn: false,
+    ID:""
     // ??? should we collect an initial location here? 
     //,location: ""
   };
@@ -98,6 +99,9 @@ class User1 extends Component {
     if (this.state.email && this.state.password) {
       //checks the users DB to see if there's an email on record
     db.collection('users').findOne({ email: req.body.email}, function(err, user) {
+      if (user) {
+        localStorage.setItem('ID', user._id)
+      }
       console.log('user found')
       .catch(err => {
         console.warn(err)

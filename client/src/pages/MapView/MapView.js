@@ -8,8 +8,9 @@ export class MapView extends Component {
   state = {
     users: '',
     teams: '',
-    geography: [],
-    team: 'Phoenix Suns'
+    coordinates: [],
+    team: 'Phoenix Suns',
+    userID: ""
   };
 
   constructor(props) {
@@ -34,15 +35,20 @@ export class MapView extends Component {
     });
   }
 
+  getID() {
+    let userID = this.localStorage.getItem('ID')
+    return JSON.parse('ID');
+  };
+
   getUsers() {
     console.log("getting users");
     API.getUsers().then(res => {
-      var datapartial = res.data.slice(0, 150)
-      this.setState({ users: datapartial })
+      Users.findOne().where({ team: this.findTeam.value})
+      this.setState({ users: markers })
     }
     )
       .catch(err => console.log(err));
-  }
+  };
 
   render() {
     if (!this.props.google || !this.state.users) {
@@ -69,13 +75,14 @@ export class MapView extends Component {
               <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
             )}
           </Map>
-        {/* <Row>
+        <Row>
             <Col size="sm-4">
               {this.state.users.length ? (
-                <select class="mt-3" style={{width:'100%'}}>
-                  {this.state.users.map(user => (
+                <select id='findTeam' class="mt-3" style={{width:'100%'}}>
+                {/* make drop down menu with all team's in OP's list */}
+                  {this.state.users.map(userID.teams => (                    
                     <option key ={ user._id} value={user._id}>
-                      {user.team}
+                      {this.user.team}
                     </option>
                   ))}
                 </select>
@@ -84,7 +91,7 @@ export class MapView extends Component {
                 )}
               </Col>
             <Col size="sm-8" />
-      </Row> */}
+      </Row>
       </div>
     );
   }
