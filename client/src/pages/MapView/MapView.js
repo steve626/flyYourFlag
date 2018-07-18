@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
-// import { Col, Row, Container } from '../../components/Grid';
+import { Col, Row } from '../../components/Grid';
 // import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
 
@@ -8,9 +8,11 @@ export class MapView extends Component {
   state = {
     users: '',
     teams: '',
-    geography: [],
-    team: 'Phoenix Suns'
+    coordinates: [],
+    userID: ""
   };
+
+ 
 
   constructor(props) {
     super(props);
@@ -34,17 +36,21 @@ export class MapView extends Component {
     });
   }
 
-  getUsers() {
+  // getID() {
+  //   let userID = this.localStorage.getItem('ID')
+  //   return JSON.parse('ID');
+  // };
+
+  getUsers(users, coordinates) {
     console.log("getting users");
     API.getUsers().then(res => {
-      var datapartial = res.data.slice(0, 150)
-      this.setState({ users: datapartial })
-    }
-    )
+      users.findAll().where({ team: this.findTeam.value})
+      this.setState({ users: coordinates })
+    })
       .catch(err => console.log(err));
-  }
+  };
 
-  render() {
+  render(user) {
     if (!this.props.google || !this.state.users) {
       return <div>Loading...</div>;
     }
@@ -69,13 +75,14 @@ export class MapView extends Component {
               <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
             )}
           </Map>
-        {/* <Row>
+        <Row>
             <Col size="sm-4">
               {this.state.users.length ? (
-                <select class="mt-3" style={{width:'100%'}}>
-                  {this.state.users.map(user => (
-                    <option key ={ user._id} value={user._id}>
-                      {user.team}
+                <select id='findTeam' class="mt-3" style={{width:'100%'}}>
+                {/* make drop down menu with all team's in OP's list */}
+                  {this.state.users.map(teams => (                     
+                    <option key ={ user._id } value={ user._id }>
+                      {this.user.team}
                     </option>
                   ))}
                 </select>
@@ -84,7 +91,7 @@ export class MapView extends Component {
                 )}
               </Col>
             <Col size="sm-8" />
-      </Row> */}
+      </Row>
       </div>
     );
   }

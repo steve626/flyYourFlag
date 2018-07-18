@@ -22,7 +22,7 @@ export default {
         return axios.get("/api/users");
     },
 
-    createUsers: function(userData){
+    createUser: function(userData){
       return axios.post('/api/users', userData);
     }
 };
