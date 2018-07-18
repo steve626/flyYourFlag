@@ -8,7 +8,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import green from '@material-ui/core/colors/yellow'
 import Button from '@material-ui/core/Button';
-
 import API from '../../utils/API';
 
 
@@ -59,71 +58,58 @@ class User1 extends Component {
     email: "",
     password: "",
     isLoggedIn: false,
-    ID:""
+    ID:"",
+    User: ""
     // ??? should we collect an initial location here? 
     //,location: ""
   };
+
     
      handleInputChange = e => {
       this.setState({ [e.target.name] : e.target.value });
      };
 
-     handleFormRegister = e => {
+     handleFormRegister = () => {
       if (this.state.email && this.state.password) {
       API.createUser({
         email: this.state.email,
-        password: this.state.password        
+        password: this.state.password,
+        teams: [],
+        coordinates: []
       })
+      //sets local storage to not ask for pw again
+      .then(localStorage.setItem('isLoggedIn', true))
+      //saves user id to local storage for use in map view
+      .then(localStorage.setItem('ID', this.user._id))
+      //changes page to choose teams
+      .then(window.location.assign('/TeamChooser'))  
       .catch(err => console.warn(err));
-    }
-    const newUser = new User ({
-      email: this.state.email,
-      password: this.state.password,
-      teams:[]
-    })
-    newUser.save()
-    .then(set(isLoggedIn = true)
-        //sets local storage to not ask for pw again
-        .then(localStorage.setItem('isLoggedIn', true))
-        //changes page to choose teams
-        .then(window.location.assign('/TeamChooser'))
-      } else {
-        window.alert("sorry, please try again");
-      }    
-  };
+    }       
+  
+};
+  
 
-}
 
-  handleFormLogIn = e => {
+
+  handleFormLogIn = (res) => {
     //checks if there's an email and password entered
     if (this.state.email && this.state.password) {
       //checks the users DB to see if there's an email on record
-    db.collection('users').findOne({ email: req.body.email}, function(err, user) {
-      if (user) {
-        localStorage.setItem('ID', user._id)
-      }
-      console.log('user found')
-      .catch(err => {
-        console.warn(err)
-      })
-      //checks to see if user and pw match
-      if (user && user.password === req.body.password) {
+    API.collection('users').findOne({ email: res.body.email }, function(err, user) {
+      if (user && user.password === res.body.password) {
         console.log('user and password are correct')
-        //???? not right?
-        .then(set(isLoggedIn = true)
+        //saves user id to local storage for use in map view
+        .then(localStorage.setItem('ID', user._id))
         //sets local storage to not ask for pw again
         .then(localStorage.setItem('isLoggedIn', true))
         //changes page to mapview
         .then(window.location.assign('/MapView'))
-      } else {
-        window.alert("sorry, please try again");
-      }    
+      .catch(err => console.warn(err)
+      )
     }
-  } 
-} else {
-  window.alert('please enter an email and password');
+    })
+  }
 };
-
 
 
      
@@ -179,9 +165,10 @@ class User1 extends Component {
                 
               
              
-        )
-    };
+        )};
+  
 
+};
     
 export default withStyles(styles)(User1);
 

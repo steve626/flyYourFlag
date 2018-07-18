@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
-// import { Col, Row, Container } from '../../components/Grid';
+import { Col, Row } from '../../components/Grid';
 // import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
 
@@ -9,9 +9,10 @@ export class MapView extends Component {
     users: '',
     teams: '',
     coordinates: [],
-    team: 'Phoenix Suns',
     userID: ""
   };
+
+ 
 
   constructor(props) {
     super(props);
@@ -35,22 +36,21 @@ export class MapView extends Component {
     });
   }
 
-  getID() {
-    let userID = this.localStorage.getItem('ID')
-    return JSON.parse('ID');
-  };
+  // getID() {
+  //   let userID = this.localStorage.getItem('ID')
+  //   return JSON.parse('ID');
+  // };
 
-  getUsers() {
+  getUsers(users, coordinates) {
     console.log("getting users");
     API.getUsers().then(res => {
-      Users.findOne().where({ team: this.findTeam.value})
-      this.setState({ users: markers })
-    }
-    )
+      users.findAll().where({ team: this.findTeam.value})
+      this.setState({ users: coordinates })
+    })
       .catch(err => console.log(err));
   };
 
-  render() {
+  render(user) {
     if (!this.props.google || !this.state.users) {
       return <div>Loading...</div>;
     }
@@ -80,8 +80,8 @@ export class MapView extends Component {
               {this.state.users.length ? (
                 <select id='findTeam' class="mt-3" style={{width:'100%'}}>
                 {/* make drop down menu with all team's in OP's list */}
-                  {this.state.users.map(userID.teams => (                    
-                    <option key ={ user._id} value={user._id}>
+                  {this.state.users.map(teams => (                     
+                    <option key ={ user._id } value={ user._id }>
                       {this.user.team}
                     </option>
                   ))}
