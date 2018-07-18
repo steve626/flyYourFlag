@@ -9,7 +9,8 @@ export class MapView extends Component {
     users: '',
     teams: '',
     coordinates: [],
-    userID: ""
+    userID: "",
+    teamValue: ''
   };
 
  
@@ -36,19 +37,32 @@ export class MapView extends Component {
     });
   }
 
+  renderFans(users) {
+    return users.team.map(coordinates =>
+      <Marker 
+      position={{ lat: coordinates.lat, lng: coordinates.lng }}
+    />
+    );
+  }
+
+
+
   // getID() {
   //   let userID = this.localStorage.getItem('ID')
   //   return JSON.parse('ID');
   // };
 
-  getUsers(users, coordinates) {
+  getUsers( users, coordinates ) {
     console.log("getting users");
     API.getUsers().then(res => {
-      users.findAll().where({ team: this.findTeam.value})
-      this.setState({ users: coordinates })
+    //   var datapartial = res.data.slice(0,100)
+    //   this.setState({users: datapartial })
+    // }
+      users.collection.findAll().where({ team: this.findTeam.value})
+      this.setState({ coordinates: coordinates })
     })
       .catch(err => console.log(err));
-  };
+    };
 
   render(user) {
     if (!this.props.google || !this.state.users) {
@@ -56,13 +70,8 @@ export class MapView extends Component {
     }
     return (
 
-      <div
-        style={{
-          height: "80vh",
-          width: "100vw"
-        }}
-      >
-
+      <div>
+       
           <Map style={{
             height: "80vh",
             width: "100vw"

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Wrapper from "../../components/Wrapper"
-//import Jumbotron from '../../components/Jumbotron';
 import { Col, Row, Container } from '../../components/Grid';
 import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
-//import { List, ListItem } from "../../components/List"
-//import Teams from ''
+
 
 //psuedocode of choosing teams:
 // 1. see dropdown boxes of different team leagues

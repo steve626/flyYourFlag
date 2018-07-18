@@ -69,7 +69,8 @@ class User1 extends Component {
       this.setState({ [e.target.name] : e.target.value });
      };
 
-     handleFormRegister = () => {
+     handleFormRegister = event => {
+       event.preventDefault();
       if (this.state.email && this.state.password) {
       API.createUser({
         email: this.state.email,
@@ -80,33 +81,35 @@ class User1 extends Component {
       //sets local storage to not ask for pw again
       .then(localStorage.setItem('isLoggedIn', true))
       //saves user id to local storage for use in map view
-      .then(localStorage.setItem('ID', this.user._id))
+       .then(localStorage.setItem('ID', this.state.User))
       //changes page to choose teams
       .then(window.location.assign('/TeamChooser'))  
+      //or trigger route call?
       .catch(err => console.warn(err));
-    }       
+    }    
   
 };
   
 
 
 
-  handleFormLogIn = (res) => {
+  handleFormLogIn = event => {
+    event.preventDefault();
     //checks if there's an email and password entered
     if (this.state.email && this.state.password) {
       //checks the users DB to see if there's an email on record
-    API.collection('users').findOne({ email: res.body.email }, function(err, user) {
-      if (user && user.password === res.body.password) {
+    API.getUsers('users').findOne({ email: this.body.email }, function(err, user) {
+      if (user && user.password === this.body.password) {
         console.log('user and password are correct')
         //saves user id to local storage for use in map view
-        .then(localStorage.setItem('ID', user._id))
+        .then(localStorage.setItem('ID', this.state.user))
         //sets local storage to not ask for pw again
         .then(localStorage.setItem('isLoggedIn', true))
         //changes page to mapview
         .then(window.location.assign('/MapView'))
       .catch(err => console.warn(err)
-      )
-    }
+       )
+     }
     })
   }
 };
