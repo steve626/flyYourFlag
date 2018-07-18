@@ -34,13 +34,8 @@ class TeamChooser extends Component {
   //be collected here or on the map screen...?
 
   handleFormSubmit = event => {
-    //event.preventDefault();
     if (this.state.team) {
-      // API.saveTeams({
-      //   teams: this.state.teams
-      //   //,location: { lng: this.query.lng, lat: this.query.lat } (probably the wrong fucking format)
-      // })
-      //   .catch(err => console.warn(err));
+      
     }
   };
 
@@ -70,8 +65,7 @@ class TeamChooser extends Component {
         <Container>
           <Row>
             <Col size="sm-4">
-            <h1>Fly Your Flag&nbsp;&nbsp;<i className="fa fa-flag"></i></h1>
-            <h3>Choose your favorite teams</h3>
+             <h3 className="mt-2" style={{color:'black', textAlign:"center"}}>Choose your favorite team </h3>
             </Col>
           </Row>
 
@@ -122,7 +116,7 @@ class TeamChooser extends Component {
             <Col size="sm-4">
               {/* code for drop down boxes showing teams of various leagues from the fyf_teams_db */}
               {this.state.teams.length ? (
-                <select class="mt-3" style={{width:'100%'}}>
+                <select className="mt-2" style={{width:'100%'}}>
                   {this.state.teams.map(team => (
                     <option key ={ team._id} value={team._id}>
                       {team.name}
@@ -130,7 +124,7 @@ class TeamChooser extends Component {
                   ))}
                 </select>
               ) : (
-                  <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>No teams </h3>
+                  <h3 className="mt-2" style={{color:'black', textAlign:"center"}}>Choose a league first...</h3>
                 )}
 
               {/* then add the selected team to the User DB in an array */}
@@ -140,7 +134,7 @@ class TeamChooser extends Component {
 
           <Row>
             <Col size="sm-4">
-              <FormBtn
+              <FormBtn type="success"
                 disabled={!(this.state.team)}
                 onClick={this.handleFormSubmit}
               >

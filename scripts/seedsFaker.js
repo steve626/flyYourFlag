@@ -186,16 +186,23 @@ mongoose.connection
       newUsers[i] = {
         email: (i+faker.internet.email()),
         password: faker.internet.password(),
-        team: teamArray[randomTeam(0, 148)],
-        geometry:{
-          lng: randomBetween(-111.85, -111.80),
-          lat: randomBetween(33.5, 33.3)
+        teams: [teamArray[randomTeam(0, 74)],
+               teamArray[randomTeam(75, 148)]
+      ],
+              
+        coordinates:{
+          lat: randomLAT(33.39, 33.32),
+          lng: randomLNG(-111.85, -111.75)          
         }
       };
   }
 }
-function randomBetween(min, max) {
+function randomLAT(max, min) {
   return Number.parseFloat((Math.random() * (max-min)) + min).toPrecision(5);
+};
+
+function randomLNG(max, min) {
+  return Number.parseFloat((Math.random() * (max-min)) + min).toPrecision(6);
 };
 
 function randomTeam(min, max) {

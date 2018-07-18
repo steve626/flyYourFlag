@@ -1,39 +1,102 @@
-import React, { Component } from require('react');
-const geolocation = require ('google-geolocation') ({
-  key: 'AIzaSyBxQES5wS9zWkEtfsdjVPJXDxXXlH8FMzA'
-});
+import React, { Component } from "react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Col, Row } from '../../components/Grid';
+// import { FormBtn } from '../../components/Form';
+import API from "../../utils/API"
 
-//this page just needs to show a map with fans matching your favorite teams locations.
-//maybe a selector to choose the teams in the user's DB?
-//we do need to be collecting user location data and storing it with the other users. 
-//how else will we see locations? This will need to run in the background? Determine how often to query?
-
-function initMap = () => {
-  var options = {
-    zoom: 12,
-    center: //user location {lat: "" , lng: ""}
-  }
-
-  var map = new 
-  google.maps.Map(document.getElementByID('map'), options);
-
-  var marker = new google.maps.Marker({
-    position: { //locations of other fans with same team as you from DB //},
-    map: map
-  });
-
-}
-//userDB will have random number for a team name. That will need to be made to correspond to
-//one of the teams from the teamsDB.
-//findAllAndReplace number with team name. Not sure where that needs to go.
-
-
-<Wrapper>
-  <Div id="map"></Div>
-</Wrapper>
+export class MapView extends Component {
+  state = {
+    users: '',
+    teams: '',
+    coordinates: [],
+    userID: ""
+  };
 
  
 
-  
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxQES5wS9zWkEtfsdjVPJXDxXXlH8FMzA&callback=initMap"
-    async defer></script>
+  constructor(props) {
+    super(props);
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {}
+    };
+  }
+
+  componentDidMount() {
+    this.getUsers();
+  }
+
+  onMarkerClick(props, marker, e) {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  }
+
+  // getID() {
+  //   let userID = this.localStorage.getItem('ID')
+  //   return JSON.parse('ID');
+  // };
+
+  getUsers(users, coordinates) {
+    console.log("getting users");
+    API.getUsers().then(res => {
+      users.findAll().where({ team: this.findTeam.value})
+      this.setState({ users: coordinates })
+    })
+      .catch(err => console.log(err));
+  };
+
+  render(user) {
+    if (!this.props.google || !this.state.users) {
+      return <div>Loading...</div>;
+    }
+    return (
+
+      <div
+        style={{
+          height: "80vh",
+          width: "100vw"
+        }}
+      >
+
+          <Map style={{
+            height: "80vh",
+            width: "100vw"
+          }}
+            google={this.props.google}
+            onClick={this.onMapClick}
+            initialCenter={{ lat: 33.356, lng: -111.79 }}
+            zoom={16} >
+            {this.state.users.map(user =>
+              <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
+            )}
+          </Map>
+        <Row>
+            <Col size="sm-4">
+              {this.state.users.length ? (
+                <select id='findTeam' class="mt-3" style={{width:'100%'}}>
+                {/* make drop down menu with all team's in OP's list */}
+                  {this.state.users.map(teams => (                     
+                    <option key ={ user._id } value={ user._id }>
+                      {this.user.team}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                  <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>Choose a league </h3>
+                )}
+              </Col>
+            <Col size="sm-8" />
+      </Row>
+      </div>
+    );
+  }
+}
+
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyBxQES5wS9zWkEtfsdjVPJXDxXXlH8FMzA"
+})(MapView);
