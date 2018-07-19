@@ -22,6 +22,10 @@ export default {
         return axios.get("/api/users");
     },
 
+    getUsersbyTeam: function(team) {
+        return axios.get("/api/users/" + team);
+    },
+
     createUser: function(userData){
       return axios.post('/api/users', userData);
     }
