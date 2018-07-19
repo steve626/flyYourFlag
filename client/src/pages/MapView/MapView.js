@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import { Col, Row } from '../../components/Grid';
-// import { FormBtn } from '../../components/Form';
+//import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
 
 export class MapView extends Component {
   state = {
     users: '',
-    teams: '',
+    teams: [],
+    team: 'Phoenix Suns',
     coordinates: [],
-    userID: ""
+    userID: "1"
   };
-
- 
 
   constructor(props) {
     super(props);
@@ -20,12 +19,14 @@ export class MapView extends Component {
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      team: 'Phoenix Suns'
     };
-  }
+  };
 
   componentDidMount() {
     this.getUsers();
+    this.getTeams();
   }
 
   onMarkerClick(props, marker, e) {
@@ -34,18 +35,33 @@ export class MapView extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-  }
+  };
+
+  handleChange(newTeam) {
+
+    this.setState({team: newTeam}, function() {
+      this.getUsers();
+    })
+
+  };
 
   // getID() {
   //   let userID = this.localStorage.getItem('ID')
   //   return JSON.parse('ID');
   // };
 
-  getUsers(users, coordinates) {
-    console.log("getting users");
-    API.getUsers().then(res => {
-      users.findAll().where({ team: this.findTeam.value})
-      this.setState({ users: coordinates })
+  getUsers() {
+
+    API.getUsersbyTeam(this.state.team).then(res => {
+      this.setState({ users: res.data })
+      console.log(this.state.users);
+    })
+      .catch(err => console.log(err));
+  };
+
+  getTeams() {
+    API.getTeams().then(res => {
+      this.setState({ teams: res.data })
     })
       .catch(err => console.log(err));
   };
@@ -63,35 +79,35 @@ export class MapView extends Component {
         }}
       >
 
-          <Map style={{
-            height: "80vh",
-            width: "100vw"
-          }}
-            google={this.props.google}
-            onClick={this.onMapClick}
-            initialCenter={{ lat: 33.356, lng: -111.79 }}
-            zoom={16} >
-            {this.state.users.map(user =>
-              <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
-            )}
-          </Map>
+        <Map style={{
+          height: "80vh",
+          width: "100vw"
+        }}
+          google={this.props.google}
+          onClick={this.onMapClick}
+          initialCenter={{ lat: 33.356, lng: -111.79 }}
+          zoom={16} >
+          {this.state.users.map(user =>
+            <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
+          )}
+        </Map>
         <Row>
-            <Col size="sm-4">
-              {this.state.users.length ? (
-                <select id='findTeam' class="mt-3" style={{width:'100%'}}>
+          <Col size="sm-4">
+            {this.state.users.length ? (
+              <select id='findTeam' className="mt-3" style={{ width: '100%' }} >
                 {/* make drop down menu with all team's in OP's list */}
-                  {this.state.users.map(teams => (                     
-                    <option key ={ user._id } value={ user._id }>
-                      {this.user.team}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                  <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>Choose a league </h3>
-                )}
-              </Col>
-            <Col size="sm-8" />
-      </Row>
+                {this.state.teams.map(team => (
+                  <option key={team._id} value={team._name} onClick={() => this.handleChange(team.name)}>
+                    {team.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+                <h3 className="mt-2" style={{ color: 'white', textAlign: "center" }}>Choose a league </h3>
+              )}
+          </Col>
+          <Col size="sm-8" />
+        </Row>
       </div>
     );
   }
