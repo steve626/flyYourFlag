@@ -5,6 +5,8 @@ import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
 
 
+
+
 //psuedocode of choosing teams:
 // 1. see dropdown boxes of different team leagues
 // 2. choose league and see list of teams eg:show all teams with matching league in DB
@@ -25,37 +27,36 @@ class TeamChooser extends Component {
 
   //wait until page loads and then be ready to submit the form (this may be useless)
   componentDidMount() {
-    this.handleFormSubmit();
+    this.getLeagueTeams();
+    // this.getUserTeam();
   };
+  
 
   //fxn for collecting user email and password and coordinates? should location 
   //be collected here or on the map screen...?
 
-  handleFormSubmit = event => {
-    if (this.state.team) {
-      
-    }
-  };
+  
 
   getLeagueTeams = league => {
-    console.log(league);
-    API.getTeamsbyLeague(league)
+    console.log('league: ' + league);
+    API.getTeamsByLeague(league)
       .then(res =>
         this.setState({ teams: res.data }))
       .catch(err => console.log(err))
+      
   }
 
-  // class Teams extends Component {
-  //   constructor() {
-  //     super();
+  getUserTeam = event => {
+    let teamPicked = event.target.value;
+    console.log('team: ' + teamPicked);
+        let userEmail = localStorage.getItem('userNow');
+      console.log('email from LS: ' + userEmail);
 
-
-  //     let Teams = this.props.state.Teams;
-  // /*     let optionItems = Teams.map((league) => {
-
-  //     } */
-  //   }
-  // };
+      API.addTeamsToUser(teamPicked)
+      .catch(err => console.warn(err))
+      // .then(User.updateOne({ email: userEmail }, { $push: { teams: this.team.name }}))    
+    
+  };
 
   render() {
     return (
@@ -114,9 +115,9 @@ class TeamChooser extends Component {
             <Col size="sm-4">
               {/* code for drop down boxes showing teams of various leagues from the fyf_teams_db */}
               {this.state.teams.length ? (
-                <select className="mt-2" style={{width:'100%'}}>
+                <select id="teamName" defaultValue={this.state.selectValue} onChange={this.getUserTeam} className="mt-2" style={{width:'80%'}}>;
                   {this.state.teams.map(team => (
-                    <option key ={ team._id} value={team._id}>
+                    <option key ={ team._id} value={ team.name }>
                       {team.name}
                     </option>
                   ))}
@@ -124,19 +125,16 @@ class TeamChooser extends Component {
               ) : (
                   <h3 className="mt-2" style={{color:'black', textAlign:"center"}}>Choose a league first...</h3>
                 )}
-
               {/* then add the selected team to the User DB in an array */}
             </Col>
             <Col size="sm-8" />
           </Row>
-
           <Row>
             <Col size="sm-4">
               <FormBtn type="success"
-                disabled={!(this.state.team)}
-                onClick={this.handleFormSubmit}
+               onSubmit={() => this.getUserTeam({teamName: this.team.name})}
               >
-                Submit
+              Submit
               </FormBtn>
             </Col>
             <Col size="sm-8" />

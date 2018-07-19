@@ -80,8 +80,8 @@ class User1 extends Component {
       })
       //sets local storage to not ask for pw again
       .then(localStorage.setItem('isLoggedIn', true))
-      //saves user id to local storage for use in map view
-       .then(localStorage.setItem('ID', this.state.User))
+      //saves user email to local storage for use in map view
+       .then(localStorage.setItem('userNow', this.state.email))
       //changes page to choose teams
       .then(window.location.assign('/TeamChooser'))  
       //or trigger route call?
@@ -98,11 +98,12 @@ class User1 extends Component {
     //checks if there's an email and password entered
     if (this.state.email && this.state.password) {
       //checks the users DB to see if there's an email on record
-    API.getUsers('users').findOne({ email: this.body.email }, function(err, user) {
+    API.getUsers('users')
+    .then(res => this.findOne({ email: this.state.email }, function(err, user) {
       if (user && user.password === this.body.password) {
         console.log('user and password are correct')
-        //saves user id to local storage for use in map view
-        .then(localStorage.setItem('ID', this.state.user))
+        //saves user email to local storage for use in map view
+        .then(localStorage.setItem('userNow', this.state.email))
         //sets local storage to not ask for pw again
         .then(localStorage.setItem('isLoggedIn', true))
         //changes page to mapview
@@ -110,7 +111,7 @@ class User1 extends Component {
       .catch(err => console.warn(err)
        )
      }
-    })
+    }))
   }
 };
 
