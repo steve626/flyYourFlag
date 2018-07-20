@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+//import LocationOnIcon from '@material-ui/icons/LocationOn';
 import './BotNav.css';
 
 
@@ -38,9 +37,9 @@ class BotNav extends React.Component {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction icon={<i class="material-icons">person</i>} />
+        <BottomNavigationAction icon={<i className="material-icons">person</i>} />
         <BottomNavigationAction icon={<FavoriteIcon />} />
-        <BottomNavigationAction icon={<i class="material-icons">person_pin_circle</i>} />
+        <BottomNavigationAction icon={<i className="material-icons">person_pin_circle</i>} />
       </BottomNavigation>
     );
   }

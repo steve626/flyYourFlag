@@ -1,4 +1,4 @@
-const user = require('../models/user')
+const user = require('../models')
 
 module.exports = {
   
@@ -25,16 +25,20 @@ module.exports = {
     .catch(next);
   },
 
-  createUser(res) {
-    console.log('user ' + user);
-    console.log('res ' + res);
-    user.create( {      
-      email: res.email,
-      password: res.password,
-      teams: res.teams,
-      coordinates: res.coordinates
-    })
-    .then( user => res.status(201).send(user))
+  create: function(req, res) {
+    
+    console.log('user ' + res);
+    console.log('req ' + req);
+    user.User
+    .create( req.body
+    //   {        
+    //   email: req.params.email,
+    //   password: req.params.password,
+    //   teams: req.params.teams,
+    //   coordinates: req.params.coordinates
+    // }
+    )
+    .then( userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
   },
 
@@ -46,7 +50,7 @@ module.exports = {
   },
 
   getUsersByTeam(req, res) {
-    user.find()
+    user.find(req.query)
     .where({teams : req.params.team})
     .then(userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
