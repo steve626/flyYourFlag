@@ -72,16 +72,14 @@ class User1 extends Component {
         password: this.state.password,
         teams: [],
         coordinates: []
-      })
+      })     
       //sets local storage to not ask for pw again
       .then(data => localStorage.setItem('isLoggedIn', true))
       //saves user email to local storage for use in map view
        .then(data => localStorage.setItem('userNow', this.state.email))
+       .catch(err => Window.alert(err))
       //changes page to choose teams
-      .then(window.location.assign('/TeamChooser'))  
-      //or trigger route call?
-      .catch(err => console.warn(err));
-
+      .then(window.location.assign('/TeamChooser'));
       //needs alerts for errors - email/password too short, email duplicate 
     }    
   
@@ -95,7 +93,10 @@ class User1 extends Component {
     //checks if there's an email and password entered
     if (this.state.email && this.state.password) {
       //checks the users DB to see if there's an email on record
-    API.getUsers('users')
+    API.getUsers({
+      email: this.state.email,
+      password: this.state.password
+    })
     .then(res => this.findOne({ email: this.state.email }, function(err, user) {
       if (user && user.password === this.body.password) {
         console.log('user and password are correct')

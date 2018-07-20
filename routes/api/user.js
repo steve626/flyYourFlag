@@ -4,7 +4,8 @@ const router = require("express").Router();
 //Defaults to /api/users
 router.route("/")
     .get(userController.getAllUsers)
-    .post(userController.create);
+    .post(userController.create)
+    .get(userController.getUser);
 
 router.route("/MapView/team")
     .get(userController.getUsersByTeam);

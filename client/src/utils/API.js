@@ -10,6 +10,10 @@ export default {
         return axios.get("/api/team")
     },
 
+    // findbyLeague: function(league) {
+    //   return axios.get("/api/team" + league)
+    // },
+
     getTeamsByLeague : function(league) {
         return axios.get("/api/team/" + league)
     },
@@ -22,8 +26,8 @@ export default {
       return axios.put("/api/user", userEmail, teamPicked)
     },
 
-    getUsers: function() {
-        return axios.get("/api/user");
+    getUsers: function(userData) {
+        return axios.get("/api/user", userData);
     },
 
     getUsersByTeam: function(team) {

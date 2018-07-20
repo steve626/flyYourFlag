@@ -8,7 +8,8 @@ router.route("/")
     .post(teamController.create);
 
 router.route("/:league")
-    .get(teamController.findbyLeague);
+    .get(teamController.findbyLeague)
+    .get(teamController.getTeamsByLeague);
 
 module.exports = router;
 

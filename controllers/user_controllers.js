@@ -26,12 +26,16 @@ module.exports = {
   },
 
   create: function(req, res) {
-    
-    console.log('user ' + res);
-    console.log('req ' + req);
-    user.User
+   user.User
     .create(req.body)
     .then( userModel => res.json(userModel))
+    .catch(err => res.status(422).json(err));
+  },
+
+  getUser: function(req, res) {
+    user.findOne(req.query)
+    .where({email: req.params.email})
+    .then(userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
   },
 
