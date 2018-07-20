@@ -61,12 +61,10 @@ class User1 extends Component {
      handleInputChange = e => {
       this.setState({ [e.target.name] : e.target.value });
      };
-
      
      render() {
        const { classes } = this.props;
         return (
-         
           <div className='form'>
            {/* <Wrapper> */}
               <Grid>
@@ -104,17 +102,13 @@ class User1 extends Component {
                       Login
                     </Button>
                     <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button}>
-                      Register
+                      Sign Up
                     </Button>
                   </Col>
                 </Row>
               </div>
             </Grid>
-          </div>
-              
-                
-              
-             
+          </div>              
         )
     }
 }

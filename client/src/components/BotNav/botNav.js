@@ -6,10 +6,14 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import './BotNav.css';
+
 
 const styles = {
   root: {
-    width: 500,
+    bottom: 0,
+    position: 'absolute',
+
   },
 };
 
@@ -28,20 +32,21 @@ class BotNav extends React.Component {
 
     return (
       <BottomNavigation
+        style={{width:'100%', backgroundColor:'#e5e5e5' }}
         value={value}
         onChange={this.handleChange}
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction icon={<i class="material-icons">person</i>} />
+        <BottomNavigationAction icon={<FavoriteIcon />} />
+        <BottomNavigationAction icon={<i class="material-icons">person_pin_circle</i>} />
       </BottomNavigation>
     );
   }
 }
 
-SimpleBottomNavigation.propTypes = {
+BotNav.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
