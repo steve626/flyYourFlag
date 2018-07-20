@@ -8,7 +8,7 @@ export class MapView extends Component {
   state = {
     users: '',
     teams: [],
-    team: 'Phoenix Suns',
+    team: '',
     coordinates: [],
     userID: "1"
   };
@@ -37,22 +37,26 @@ export class MapView extends Component {
     });
   };
 
+
   handleChange(event) {
 
     this.setState({team: event.target.value}, function() {
+
       this.getUsers();
     })
 
   };
 
-  // getID() {
-  //   let userID = this.localStorage.getItem('ID')
-  //   return JSON.parse('ID');
-  // };
+  renderFans(users) {
+    return users.team.map(coordinates =>
+      <Marker 
+      position={{ lat: coordinates.lat, lng: coordinates.lng }}
+    />
+    );
+  }
 
   getUsers() {
-
-    API.getUsersbyTeam(this.state.team).then(res => {
+    API.getUsersByTeam(this.state.team).then(res => {
       this.setState({ users: res.data })
     })
       .catch(err => console.log(err));
@@ -63,7 +67,7 @@ export class MapView extends Component {
       this.setState({ teams: res.data })
     })
       .catch(err => console.log(err));
-  };
+    };
 
   render(user) {
     if (!this.props.google || !this.state.users) {
@@ -71,25 +75,16 @@ export class MapView extends Component {
     }
     return (
 
-      <div
-        style={{
-          height: "80vh",
-          width: "100vw"
-        }}
-      >
-
-        <Map style={{
-          height: "80vh",
-          width: "100vw"
-        }}
-          google={this.props.google}
-          onClick={this.onMapClick}
-          initialCenter={{ lat: 33.356, lng: -111.79 }}
-          zoom={16} >
-          {this.state.users.map(user =>
-            <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
-          )}
-        </Map>
+      <div>
+          <Map 
+            google={this.props.google}
+            onClick={this.onMapClick}
+            initialCenter={{ lat: 33.356, lng: -111.79 }}
+            zoom={16} >
+            {this.state.users.map(user =>
+              <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
+            )}
+          </Map>      
         <Row>
           <Col size="sm-4">
             {this.state.users.length ? (
