@@ -46,7 +46,7 @@ module.exports = {
 
   getUsersByTeam(req, res) {
     user.find()
-    .where({team : req.params.team})
+    .where({teams : req.params.team})
     .then(userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
   },

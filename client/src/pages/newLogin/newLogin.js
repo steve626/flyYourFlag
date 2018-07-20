@@ -73,7 +73,7 @@ class User1 extends Component {
                     <FormControl className={classes.textField} >
                       <InputLabel htmlFor="email-simple" style={{ fontSize: '20px', fontFamily: 'Raleway'}}>Email</InputLabel>
                         <Input style={{padding: '0px 0px 5px'}}
-                        className={classes.textField}
+                         className={classes.textField}
                          name='email'
                          value={this.state.email}
                          onChange={this.handleInputChange.bind(this)}

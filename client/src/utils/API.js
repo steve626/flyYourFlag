@@ -9,7 +9,7 @@ export default {
         return axios.get("/api/team")
     },
 
-    getTeamsbyLeague : function(league) {
+    getTeamsByLeague : function(league) {
         return axios.get("/api/team/" + league)
     },
   
@@ -18,11 +18,19 @@ export default {
 
     },
 
+    addTeamsToUser: function(teamPicked){
+      return axios.put("/api/users", teamPicked)
+    },
+
     getUsers: function() {
         return axios.get("/api/users");
     },
 
-    createUsers: function(userData){
+    getUsersByTeam: function(team) {
+        return axios.get("/api/users/" + team);
+    },
+
+    createUser: function(userData){
       return axios.post('/api/users', userData);
     }
 };

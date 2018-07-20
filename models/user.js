@@ -26,6 +26,7 @@ const userSchema = new Schema({
   },
   teams: {
     type: [String]
+    //unique: true
   },
   coordinates: [PointSchema]
 });

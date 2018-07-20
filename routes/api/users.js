@@ -5,4 +5,7 @@ const router = require("express").Router();
 router.route("/")
     .get(userController.getAllUsers);
 
+router.route("/:team")
+    .get(userController.getUsersByTeam)
+
 module.exports = router;

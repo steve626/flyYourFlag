@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
-// import { Col, Row, Container } from '../../components/Grid';
-// import { FormBtn } from '../../components/Form';
+import { Col, Row } from '../../components/Grid';
+//import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
 
 export class MapView extends Component {
   state = {
     users: '',
-    teams: '',
-    geography: [],
-    team: 'Phoenix Suns'
+    teams: [],
+    team: '',
+    coordinates: [],
+    userID: "1"
   };
 
   constructor(props) {
@@ -18,12 +19,14 @@ export class MapView extends Component {
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      team: 'Phoenix Suns'
     };
-  }
+  };
 
   componentDidMount() {
     this.getUsers();
+    this.getTeams();
   }
 
   onMarkerClick(props, marker, e) {
@@ -32,35 +35,48 @@ export class MapView extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
+  };
+
+
+  handleChange(event) {
+
+    this.setState({team: event.target.value}, function() {
+
+      this.getUsers();
+    })
+
+  };
+
+  renderFans(users) {
+    return users.team.map(coordinates =>
+      <Marker 
+      position={{ lat: coordinates.lat, lng: coordinates.lng }}
+    />
+    );
   }
 
   getUsers() {
-    console.log("getting users");
-    API.getUsers().then(res => {
-      var datapartial = res.data.slice(0, 150)
-      this.setState({ users: datapartial })
-    }
-    )
+    API.getUsersByTeam(this.state.team).then(res => {
+      this.setState({ users: res.data })
+    })
       .catch(err => console.log(err));
-  }
+  };
 
-  render() {
+  getTeams() {
+    API.getTeams().then(res => {
+      this.setState({ teams: res.data })
+    })
+      .catch(err => console.log(err));
+    };
+
+  render(user) {
     if (!this.props.google || !this.state.users) {
       return <div>Loading...</div>;
     }
     return (
 
-      <div
-        style={{
-          height: "80vh",
-          width: "100vw"
-        }}
-      >
-
-          <Map style={{
-            height: "80vh",
-            width: "100vw"
-          }}
+      <div>
+          <Map 
             google={this.props.google}
             onClick={this.onMapClick}
             initialCenter={{ lat: 33.356, lng: -111.79 }}
@@ -68,23 +84,24 @@ export class MapView extends Component {
             {this.state.users.map(user =>
               <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
             )}
-          </Map>
-        {/* <Row>
-            <Col size="sm-4">
-              {this.state.users.length ? (
-                <select class="mt-3" style={{width:'100%'}}>
-                  {this.state.users.map(user => (
-                    <option key ={ user._id} value={user._id}>
-                      {user.team}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                  <h3 class="mt-2" style={{color:'white', textAlign:"center"}}>Choose a league </h3>
-                )}
-              </Col>
-            <Col size="sm-8" />
-      </Row> */}
+          </Map>      
+        <Row>
+          <Col size="sm-4">
+            {this.state.users.length ? (
+              <select id='findTeam' className="mt-3" style={{ width: '100%' }} onChange={this.handleChange.bind(this)} >
+                {/* make drop down menu with all team's in OP's list */}
+                {this.state.teams.map(team => (
+                  <option key={team._id} value={team._name} /*onClick={() => this.handleChange(team.name)} */>
+                    {team.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+                <h3 className="mt-2" style={{ color: 'white', textAlign: "center" }}>Choose a league </h3>
+              )}
+          </Col>
+          <Col size="sm-8" />
+        </Row>
       </div>
     );
   }
