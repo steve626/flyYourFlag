@@ -118,9 +118,9 @@ class TeamChooser extends Component {
               {/* code for drop down boxes showing teams of various leagues from the fyf_teams_db */}
               {this.state.teams.length ? (
                 <select id="teamName" defaultValue={this.state.selectValue} onChange={this.getUserTeam} className="mt-2" style={{width:'80%'}}>;
-                  {this.state.teams.map(team => (
-                    <option key ={ team._id} value={ team.name }>
-                      {team.name}
+                  {this.state.teams.map(teams => (
+                    <option key ={ teams._id} value={ teams.name }>
+                      {teams.name}
                     </option>
                   ))}
                 </select>
@@ -134,7 +134,7 @@ class TeamChooser extends Component {
           <Row>
             <Col size="sm-4">
               <FormBtn type="success"
-               onSubmit={() => this.getUserTeam({ teamName: this.team.name })}
+               onSubmit={() => this.getUserTeam({ teamName: this.teams.name })}
               >
               Submit
               </FormBtn>

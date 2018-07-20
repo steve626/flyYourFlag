@@ -4,20 +4,20 @@ const team = require('../models/team')
 module.exports = {
   
   findAll(req, res) {
-    team.find(req.query)
+    teams.find(req.query)
     .then(teamModel => res.json(teamModel))
     .catch(err => res.status(422).json(err));
   },
 
   findbyLeague(req, res) {
-    team.find()
+    teams.find()
     .where({league : req.params.league})
     .then(teamModel => res.json(teamModel))
     .catch(err => res.status(422).json(err));
   },
 
   getTeamsByLeague(req, res) {
-    team.find()
+    teams.find()
     .where({league : req.params.league})
     .then(teamModel => res.json(teamModel))
     .catch(err => res.status(422).json(err));
@@ -26,7 +26,7 @@ module.exports = {
   create(req, res, next) {
     const teamProps = req.body;
 
-    team.create(teamProps)
+    teams.create(teamProps)
       .then(team => res.send(team))
       .catch(next);
     //console.log(req.body);
@@ -37,8 +37,8 @@ module.exports = {
     const teamId = req.params.id;
     const teamProps = req.body;
 
-    team.findByIdAndUpdate({ _id: teamId }, teamProps)
-      .then(() => team.findById({ _id: teamId }))
+    teams.findByIdAndUpdate({ _id: teamId }, teamProps)
+      .then(() => teams.findById({ _id: teamId }))
       .then(team => res.send(team))
       .catch(next);
   },
@@ -46,7 +46,7 @@ module.exports = {
   delete(req, res, next) {
     const teamId = req.params.id;
     
-    team.findByIdAndRemove({ _id: teamId })
+    teams.findByIdAndRemove({ _id: teamId })
     .then( team => res.status(204).send(team))
     .catch(next);
   }
