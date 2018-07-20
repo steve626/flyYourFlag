@@ -37,8 +37,11 @@ export class MapView extends Component {
     });
   };
 
-  handleChange(newTeam) {
-    this.setState({team: newTeam}, function() {
+
+  handleChange(event) {
+
+    this.setState({team: event.target.value}, function() {
+
       this.getUsers();
     })
 
@@ -55,7 +58,6 @@ export class MapView extends Component {
   getUsers() {
     API.getUsersByTeam(this.state.team).then(res => {
       this.setState({ users: res.data })
-      console.log(this.state.users);
     })
       .catch(err => console.log(err));
   };
@@ -86,10 +88,10 @@ export class MapView extends Component {
         <Row>
           <Col size="sm-4">
             {this.state.users.length ? (
-              <select id='findTeam' className="mt-3" style={{ width: '100%' }} >
+              <select id='findTeam' className="mt-3" style={{ width: '100%' }} onChange={this.handleChange.bind(this)} >
                 {/* make drop down menu with all team's in OP's list */}
                 {this.state.teams.map(team => (
-                  <option key={team._id} value={team._name} onClick={() => this.handleChange(team.name)}>
+                  <option key={team._id} value={team._name} /*onClick={() => this.handleChange(team.name)} */>
                     {team.name}
                   </option>
                 ))}
