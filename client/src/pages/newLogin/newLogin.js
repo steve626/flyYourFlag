@@ -8,7 +8,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import green from '@material-ui/core/colors/yellow'
 import Button from '@material-ui/core/Button';
-import API from '../../utils/API';
 
 
 
@@ -56,20 +55,15 @@ const styles = theme => ({
 
 class User1 extends Component {
   
-  state = {
-    email: "",
-    password: "",
-    isLoggedIn: false,
-    ID:"",
-    User: ""
-    // ??? should we collect an initial location here? 
-    //,location: ""
-  };
-
+    state = {
+      email: "",
+      password: "",
+    };
     
      handleInputChange = e => {
       this.setState({ [e.target.name] : e.target.value });
      };
+<<<<<<< HEAD
 
      handleFormRegister = event => {
        event.preventDefault();
@@ -118,11 +112,12 @@ class User1 extends Component {
 };
 
 
+=======
+>>>>>>> 86013551a7275d1bb7a659cc14b50ab6efbe8632
      
      render() {
        const { classes } = this.props;
         return (
-         
           <div className='form'>
            {/* <Wrapper> */}
               <Grid>
@@ -131,7 +126,7 @@ class User1 extends Component {
                     <FormControl className={classes.textField} >
                       <InputLabel htmlFor="email-simple" style={{ fontSize: '20px', fontFamily: 'Raleway'}}>Email</InputLabel>
                         <Input style={{padding: '0px 0px 5px'}}
-                        className={classes.textField}
+                         className={classes.textField}
                          name='email'
                          value={this.state.email}
                          onChange={this.handleInputChange.bind(this)}
@@ -156,25 +151,28 @@ class User1 extends Component {
                 <div className='but'>
                  <Row>
                   <Col md={12} xs={12}>
+<<<<<<< HEAD
                     <Button variant='contained' color="primary" style={{fontFamily: 'Raleway'}}className={classes.button} onClick={this.handleFormLogIn.bind(this)} >
                       Login
                     </Button>
                     <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button} onClick={this.handleFormRegister.bind(this)} >
                       Register
+=======
+                    <Button variant='contained' color="primary" style={{fontFamily: 'Raleway'}}className={classes.button}>
+                      Login
+                    </Button>
+                    <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button}>
+                      Sign Up
+>>>>>>> 86013551a7275d1bb7a659cc14b50ab6efbe8632
                     </Button>
                   </Col>
                 </Row>
               </div>
             </Grid>
-          </div>
-              
-                
-              
-             
-        )};
-  
-
-};
+          </div>              
+        )
+    }
+}
     
 export default withStyles(styles)(User1);
 

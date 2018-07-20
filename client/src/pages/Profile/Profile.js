@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import Wrapper from '../../components/Wrapper'
-import Jumbotron from '../../components/Jumbotron';
-import { FormBtn, Form, Input } from '../../components/Form'
-import { Col, Row, Container } from '../../components/Grid';
-import {List, ListItem } from '../../components/List';
-import User from '../newLogin';
-
+// import Wrapper from '../../components/Wrapper'
+import User1 from '../newLogin';
+// import BotNav from '../../components/BotNav';
 
 //shows user email and teams chosen, simple.
 
 class Profile extends Component {
   state = {
-    email: User.email,
+    email: User1.email,
     teams: []
   }
 
@@ -30,51 +26,57 @@ class Profile extends Component {
   };
 
   render() {
-    return (
-      <Wrapper>
-        <Container fluid>
-          <Row>
-            <Col size="sm-4">
-              <Jumbotron>
-                <h2>Fly Your Flag</h2>
-                <h4>Your teams</h4>
-                <h4>Change your Password</h4>
-              </Jumbotron>
-              {this.state.teams.length ? (
-                <List>
-                  {this.state.teams.map(team => (
-                  <ListItem key={User._id}>
-                      <strong>
-                      {team.name} in {team.league}
-                      </strong>
-                    {/*<DeleteBtn onClick={() => this.deleteTeam(User._id)} /> */}
-                  </ListItem>
-                   ))}
-                </List>
-                ) : (
-                  <h3>No Teams Chosen</h3>
-                )}
-              <Form>
-                <Input
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  name='password'
-                  placeholder='your password (at least 6 characters)'
-                />
-              </Form>
-              <FormBtn
-                disabled={!(this.state.password)}
-                onClick={this.handleFormSubmit}
-                >
-                Reset Password
-              </FormBtn>                
-            </Col>
-          </Row>
-        </Container>
-      </Wrapper>
-    );
+    // const { classes } = this.props;
+    return(
+      <div>
+        
+      </div>
+    )
   }
-
 }
 
 export default Profile;
+   
+  
+      // <Wrapper>
+      //   <Container fluid>
+      //     <Row>
+      //       <Col size="sm-4">
+      //         <Jumbotron>
+      //           <h2>Fly Your Flag</h2>
+      //           <h4>Your teams</h4>
+      //           <h4>Change your Password</h4>
+      //         </Jumbotron>
+      //         {this.state.teams.length ? (
+      //           <List>
+      //             {this.state.teams.map(team => (
+      //             <ListItem key={User._id}>
+      //                 <strong>
+      //                 {team.name} in {team.league}
+      //                 </strong>
+      //               {/*<DeleteBtn onClick={() => this.deleteTeam(User._id)} /> */}
+      //             </ListItem>
+      //              ))}
+      //           </List>
+      //           ) : (
+      //             <h3>No Teams Chosen</h3>
+      //           )}
+      //         <Form>
+      //           <Input
+      //             value={this.state.password}
+      //             onChange={this.handleInputChange}
+      //             name='password'
+      //             placeholder='your password (at least 6 characters)'
+      //           />
+      //         </Form>
+      //         <FormBtn
+      //           disabled={!(this.state.password)}
+      //           onClick={this.handleFormSubmit}
+      //           >
+      //           Reset Password
+      //         </FormBtn>                
+      //       </Col>
+      //     </Row>
+      //   </Container>
+      // </Wrapper>
+   

@@ -7,6 +7,7 @@ import NoMatch from './pages/NoMatch';
 import newLogin from './pages/newLogin';
 import BarNav from './components/BarNav';
 import Wrapper from './components/Wrapper';
+import BotNav from './components/BotNav';
 
 
 
@@ -17,16 +18,17 @@ const App = () => (
     <BarNav />
     <Wrapper>
       <Switch>
-      <Route exact path = '/' component = {newLogin} />
+        <Route exact path = '/' component = {newLogin} />
         <Route exact path = '/MapView' component = {MapView} />
         <Route exact path = '/Profile' component = {Profile} />
         <Route exact path = '/TeamChooser' component = {TeamChooser} />
         <Route exact path = '/NoMatch' component = {NoMatch} />
       </Switch>
     </Wrapper>
-    </div>
-    
-  </Router>
+    <BotNav/>
+  </div>
+ 
+</Router> 
 );
 
 export default App;
