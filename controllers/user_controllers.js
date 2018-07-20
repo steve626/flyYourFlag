@@ -1,9 +1,7 @@
 const user = require('../models/user')
 
 module.exports = {
-  greeting(req, res) {
-    res.send({ hi: 'there' });
-  },
+  
 
   index(req, res, next) {
     const { lng, lat } = req.query;
@@ -27,14 +25,17 @@ module.exports = {
     .catch(next);
   },
 
-  create(req, res, next) {
-    const userProps = req.body;
-
-    user.create(userProps)
-      .then(user => res.send(user))
-      .catch(next);
-    //console.log(req.body);
-    
+  createUser(res) {
+    console.log('user ' + user);
+    console.log('res ' + res);
+    user.create( {      
+      email: res.email,
+      password: res.password,
+      teams: res.teams,
+      coordinates: res.coordinates
+    })
+    .then( user => res.status(201).send(user))
+    .catch(err => res.status(422).json(err));
   },
 
   getAllUsers(req, res) {
@@ -49,6 +50,13 @@ module.exports = {
     .where({teams : req.params.team})
     .then(userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
+  },
+
+  addTeamsToUser(res) {
+    let userEmail = localStorage.getItem('userNow');
+    user.update()
+    .where({ email:  userEmail }, { $push: { teams: this.team.name }})
+    .then( user => res.status(202).send(user));
   },
 
   edit(req,res,next) {

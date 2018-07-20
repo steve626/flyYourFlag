@@ -5,7 +5,15 @@ const router = require("express").Router();
 router.route("/")
     .get(userController.getAllUsers);
 
-router.route("/:team")
-    .get(userController.getUsersByTeam)
+router.route("/MapView/team")
+    .get(userController.getUsersByTeam);
+
+router.route("/TeamChooser/addTeam")
+  .put(userController.addTeamsToUser);
+
+router.route("/:createUser")
+  .post(userController.createUser);
+
+
 
 module.exports = router;

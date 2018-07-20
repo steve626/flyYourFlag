@@ -44,19 +44,21 @@ class TeamChooser extends Component {
         this.setState({ teams: res.data }))
       .catch(err => console.log(err))
       
-  }
+  };
 
   getUserTeam = event => {
     let teamPicked = event.target.value;
     console.log('team: ' + teamPicked);
         let userEmail = localStorage.getItem('userNow');
       console.log('email from LS: ' + userEmail);
-
-      API.addTeamsToUser(teamPicked)
-      .catch(err => console.warn(err))
-      // .then(User.updateOne({ email: userEmail }, { $push: { teams: this.team.name }}))    
-    
-  };
+      API.addTeamsToUser(userEmail, teamPicked)      
+      .then(data => {
+        (alert("team added"))
+      })
+        .catch(err => console.warn(err))      
+           
+      
+    };
 
   render() {
     return (
@@ -132,7 +134,7 @@ class TeamChooser extends Component {
           <Row>
             <Col size="sm-4">
               <FormBtn type="success"
-               onSubmit={() => this.getUserTeam({teamName: this.team.name})}
+               onSubmit={() => this.getUserTeam({ teamName: this.team.name })}
               >
               Submit
               </FormBtn>

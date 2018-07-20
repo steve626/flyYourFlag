@@ -3,6 +3,7 @@
 
 import axios from "axios";
 
+
 export default {
     //Gets all teams
     getTeams: function() {
@@ -15,22 +16,21 @@ export default {
   
     saveTeam: function(teamData) {
       return axios.post("/api/team", teamData)
-
     },
 
-    addTeamsToUser: function(teamPicked){
-      return axios.put("/api/users", teamPicked)
+    addTeamsToUser: function(userEmail, teamPicked){
+      return axios.put("/api/user", userEmail, teamPicked)
     },
 
     getUsers: function() {
-        return axios.get("/api/users");
+        return axios.get("/api/user");
     },
 
     getUsersByTeam: function(team) {
-        return axios.get("/api/users/" + team);
+        return axios.get("/api/user/" + team);
     },
 
     createUser: function(userData){
-      return axios.post('/api/users', userData);
+      return axios.post('/api/user', userData);
     }
 };

@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import API from '../../utils/API';
 
 
+
+
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -79,11 +81,11 @@ class User1 extends Component {
         coordinates: []
       })
       //sets local storage to not ask for pw again
-      .then(localStorage.setItem('isLoggedIn', true))
+      .then(data => localStorage.setItem('isLoggedIn', true))
       //saves user email to local storage for use in map view
-       .then(localStorage.setItem('userNow', this.state.email))
+       .then(data => localStorage.setItem('userNow', this.state.email))
       //changes page to choose teams
-      .then(window.location.assign('/TeamChooser'))  
+     // .then(window.location.assign('/TeamChooser'))  
       //or trigger route call?
       .catch(err => console.warn(err));
     }    
@@ -154,10 +156,10 @@ class User1 extends Component {
                 <div className='but'>
                  <Row>
                   <Col md={12} xs={12}>
-                    <Button variant='contained' color="primary" style={{fontFamily: 'Raleway'}}className={classes.button} onClick={this.handleFormLogIn} >
+                    <Button variant='contained' color="primary" style={{fontFamily: 'Raleway'}}className={classes.button} onClick={this.handleFormLogIn.bind(this)} >
                       Login
                     </Button>
-                    <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button} onClick={this.handleFormRegister} >
+                    <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button} onClick={this.handleFormRegister.bind(this)} >
                       Register
                     </Button>
                   </Col>
