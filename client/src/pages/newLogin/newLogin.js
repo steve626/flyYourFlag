@@ -78,13 +78,15 @@ class User1 extends Component {
       //saves user email to local storage for use in map view
        .then(data => localStorage.setItem('userNow', this.state.email))
       //changes page to choose teams
-     // .then(window.location.assign('/TeamChooser'))  
+      .then(window.location.assign('/TeamChooser'))  
       //or trigger route call?
       .catch(err => console.warn(err));
+
+      //needs alerts for errors - email/password too short, email duplicate 
     }    
   
 };
-  
+
 
 
 

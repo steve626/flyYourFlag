@@ -30,14 +30,7 @@ module.exports = {
     console.log('user ' + res);
     console.log('req ' + req);
     user.User
-    .create( req.body
-    //   {        
-    //   email: req.params.email,
-    //   password: req.params.password,
-    //   teams: req.params.teams,
-    //   coordinates: req.params.coordinates
-    // }
-    )
+    .create(req.body)
     .then( userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
   },
