@@ -4,19 +4,19 @@ const router = require("express").Router();
 //Defaults to /api/user
 router.route("/")
     .get(userController.getAllUsers)
-    .post(userController.create)
+    .post(userController.create);
 
 router.route("/:team")
     .get(userController.getUsersByTeam);
 
-router.route("/addTeam")
+router.route("/:email")
   .put(userController.addTeamsToUser);
 
 router.route("/:email")
-    .get(userController.getUser)
+    .get(userController.getUser);
 
-// router.route("/createUser")
-//   .post(userController.createUser);
+router.route("/:id")
+      .put(userController.addUserTeam);
 
 
 

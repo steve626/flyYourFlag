@@ -54,17 +54,21 @@ module.exports = {
     .catch(err => res.status(422).json(err));
   },
 
-  addTeamsToUser(res) {
-    let userEmail = localStorage.getItem('userNow');
-    user.update()
-    .where({ email:  userEmail }, { $push: { teams: this.team.name }})
-    .then( user => res.status(202).send(user));
+  addTeamsToUser(req, res) {
+     user.findOneAndUpdate({ email:  req.userEmail }, {  teams: decodeURI(req.teamPicked) })
+    .then( user => res.status(202).send(user))
+    .catch(err => res.status(422).json(err));
+     },
+
+  addUserTeam(req, res) {
+    user.findOneAndUpdate({ email: req.params.userEmail}, req.body)
+    .then(userModel => res.json(userModel))
+    .catch(err => res.status(422).json(err));
   },
 
   edit(req,res,next) {
     const userId = req.params.id;
     const userProps = req.body;
-
     user.findByIdAndUpdate({ _id: userId }, userProps)
       .then(() => user.findById({ _id: userId }))
       .then(user => res.send(user))

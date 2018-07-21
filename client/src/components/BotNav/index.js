@@ -1,1 +1,1 @@
-export { default } from "./botNav";
+export { default } from "./BotNav";

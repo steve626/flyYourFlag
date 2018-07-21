@@ -18,7 +18,7 @@ const App = () => (
     <div>
       <BarNav />
         <div>
-          <Route path={['/MapView', '/Profile', 'TeamChooser']} component={BotNav} />
+          <Route path={['/MapView', '/Profile', '/TeamChooser']} component={BotNav} />
         </div>
         <Wrapper>
           <Switch>

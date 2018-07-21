@@ -80,7 +80,7 @@ export class MapView extends Component {
             google={this.props.google}
             onClick={this.onMapClick}
             initialCenter={{ lat: 33.356, lng: -111.79 }}
-            zoom={16} >
+            zoom={14} >
             {this.state.users.map(user =>
               <Marker key={user._id} position={{ lat: user.coordinates[0].lat, lng: user.coordinates[0].lng }} />
             )}

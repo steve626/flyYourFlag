@@ -18,12 +18,17 @@ import API from "../../utils/API"
 
 
 class TeamChooser extends Component {
+   
   state = {
     teams: [],
-    league: ""
+    league: "",
+    userEmail:'',
+    teamPicked: ''
     // ??? should we collect an initial location here? 
     //,location: ""
   };
+  
+  
 
   //wait until page loads and then be ready to submit the form (this may be useless)
   componentDidMount() {
@@ -47,18 +52,21 @@ class TeamChooser extends Component {
   };
 
   getUserTeam = event => {
-    let teamPicked = event.target.value;
-    console.log('team: ' + teamPicked);
-        let userEmail = localStorage.getItem('userNow');
-      console.log('email from LS: ' + userEmail);
-      API.addTeamsToUser(userEmail, teamPicked)      
-      .then(data => {
-        (alert("team added"))
-      })
-        .catch(err => console.warn(err))      
+    this.teamPicked = event.target.value;
+    console.log('team: ' + this.teamPicked);
+        this.userEmail = localStorage.getItem('userNow');
+      console.log('email from LS: ' + this.userEmail);
+  };
+
+    addUserTeam = () => {
+      API.addTeamsToUser(this.userEmail, this.teamPicked)   
+      console.log('email and team: ' + this.userEmail + ', ' + this.teamPicked + ' sent to DB')
+     
+    };      
+  
            
       
-    };
+    
 
   render() {
     return (
@@ -134,7 +142,7 @@ class TeamChooser extends Component {
           <Row>
             <Col size="sm-4">
               <FormBtn type="success"
-               onSubmit={() => this.getUserTeam({ teamName: this.teams.name })}
+               onClick={ this.addUserTeam }
               >
               Submit
               </FormBtn>

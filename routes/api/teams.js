@@ -1,5 +1,4 @@
 const teamController = require('../../controllers/team_controllers');
-const userController = require('../../controllers/user_controllers');
 const router = require("express").Router();
 
 // "/" defaults to /api/team
