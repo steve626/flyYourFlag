@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import green from '@material-ui/core/colors/yellow'
 import Button from '@material-ui/core/Button';
 import API from "../../utils/API"
+import LocationSwitch from '../../components/LocationSwitch';
 
 
 

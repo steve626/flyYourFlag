@@ -19,7 +19,7 @@ import API from "../../utils/API"
 
 class TeamChooser extends Component {
   state = {
-    teams: "",
+    teams: [],
     league: ""
     // ??? should we collect an initial location here? 
     //,location: ""

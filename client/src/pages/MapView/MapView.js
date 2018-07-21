@@ -6,7 +6,7 @@ import API from "../../utils/API"
 
 export class MapView extends Component {
   state = {
-    users: '',
+    users: [],
     teams: [],
     team: '',
     coordinates: [],
