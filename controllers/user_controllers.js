@@ -1,4 +1,4 @@
-const user = require('../models')
+const user = require('../models/user')
 
 module.exports = {
   
@@ -49,7 +49,8 @@ module.exports = {
   getUsersByTeam(req, res) {
     user.find(req.query)
     .where({teams : req.params.team})
-    .then(userModel => res.json(userModel))
+    .then(userModel => {
+      res.json(userModel)})
     .catch(err => res.status(422).json(err));
   },
 
