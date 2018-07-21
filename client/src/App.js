@@ -8,6 +8,7 @@ import newLogin from './pages/newLogin';
 import BarNav from './components/BarNav';
 import Wrapper from './components/Wrapper';
 import BotNav from './components/BotNav';
+import RequireAuth from './components/RequireAuth';
 
 
 
@@ -15,20 +16,23 @@ import BotNav from './components/BotNav';
 const App = () => (
   <Router>
     <div>
-    <BarNav />
-    <Wrapper>
-      <Switch>
-        <Route exact path = '/' component = {newLogin} />
-        <Route exact path = '/MapView' component = {MapView} />
-        <Route exact path = '/Profile' component = {Profile} />
-        <Route exact path = '/TeamChooser' component = {TeamChooser} />
-        <Route exact path = '/NoMatch' component = {NoMatch} />
-      </Switch>
-    </Wrapper>
-    <BotNav/>
-  </div>
- 
-</Router> 
+      <BarNav />
+        <div>
+          <Route path={['/MapView', '/Profile', 'TeamChooser']} component={BotNav} />
+        </div>
+        <Wrapper>
+          <Switch>
+            
+            <Route exact path = '/' component = {newLogin} />
+            <Route exact path = '/MapView' component = {MapView} />
+            <Route exact path = '/Profile' component = {Profile} />
+            <Route exact path = '/TeamChooser' component = {TeamChooser} />
+            <Route exact path = '/NoMatch' component = {NoMatch} />
+            
+          </Switch>
+        </Wrapper>
+      </div>
+    </Router> 
 );
 
 export default App;
