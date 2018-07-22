@@ -30,7 +30,7 @@ export default {
         return axios.get("/api/user/" + team);
     },
 
-    createUser: function(userData){
-      return axios.post('/api/user', userData);
+    createUser: function(newUserData){
+      return axios.post('/api/user', newUserData);
     }
 };

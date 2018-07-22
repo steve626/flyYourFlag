@@ -25,9 +25,12 @@ module.exports = {
     .catch(next);
   },
 
-  create: function(req, res) {
-   user.User
-    .create(req.body)
+  create(req, res) {    
+   user
+    .create({ email: req.body.email,
+              password: req.body.password,
+              teams: req.body.teams,
+              coordinates: req.body.coordinates })
     .then( userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
   },

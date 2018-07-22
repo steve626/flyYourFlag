@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import green from '@material-ui/core/colors/yellow'
 import Button from '@material-ui/core/Button';
 import API from "../../utils/API"
-import LocationSwitch from '../../components/LocationSwitch';
+//import LocationSwitch from '../../components/LocationSwitch';
 
 
 
@@ -59,26 +59,29 @@ class User1 extends Component {
     state = {
       email: "",
       password: "",
+      
+      
     };
     
+
      handleInputChange = e => {
       this.setState({ [e.target.name] : e.target.value });
      };
 
      handleFormRegister = event => {
        event.preventDefault();
-      if (this.state.email && this.state.password) {
+       if (this.state.email && this.state.password) {
       API.createUser({
         email: this.state.email,
         password: this.state.password,
         teams: [],
         coordinates: []
-      })     
+      })
       //sets local storage to not ask for pw again
       .then(data => localStorage.setItem('isLoggedIn', true))
       //saves user email to local storage for use in map view
        .then(data => localStorage.setItem('userNow', this.state.email))
-       .catch(err => Window.alert(err))
+       .catch(err => console.warn(err))
       //changes page to choose teams
       .then(window.location.assign('/TeamChooser'));
       //needs alerts for errors - email/password too short, email duplicate 
