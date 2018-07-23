@@ -77,7 +77,7 @@ export class MapView extends Component {
 
       <div>
       <Map style={{
-            height: "80vh",
+            height: "82.5vh",
             width: "100vw"
           }} 
             google={this.props.google}
