@@ -31,7 +31,7 @@ class BotNav extends React.Component {
 
     return (
       <BottomNavigation
-        style={{width:'100%', backgroundColor:'#e5e5e5' }}
+        style={{width:'100%', backgroundColor:'#e5e5e5', zIndex: '1000'}}
         value={value}
         onChange={this.handleChange}
         showLabels
