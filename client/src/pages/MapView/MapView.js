@@ -76,7 +76,10 @@ export class MapView extends Component {
     return (
 
       <div>
-          <Map 
+      <Map style={{
+            height: "80vh",
+            width: "100vw"
+          }} 
             google={this.props.google}
             onClick={this.onMapClick}
             initialCenter={{ lat: 33.356, lng: -111.79 }}

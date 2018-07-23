@@ -55,16 +55,31 @@ const styles = theme => ({
 });
 
 class User1 extends Component {
+
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     email: "",
+  //     password: "",
+  //     this.localStorage.setItem('isloggedIn', false),
+  //     this.localStorage.setItem('userNow', "")
+  //   }
+  // }
   
     state = {
       email: "",
-      password: "",
-      
+      password: ""   
       
     };
-    
 
-     handleInputChange = e => {
+    componentDidMount() {
+      localStorage.setItem('isLoggedIn', false);
+      localStorage.setItem('userNow', "");
+      return(  console.log(localStorage.getItem('isLoggedIn'))
+    )
+    };
+    
+    handleInputChange = e => {
       this.setState({ [e.target.name] : e.target.value });
      };
 
@@ -78,10 +93,11 @@ class User1 extends Component {
         coordinates: []
       })
       //sets local storage to not ask for pw again
-      .then(data => localStorage.setItem('isLoggedIn', true))
+      .then(localStorage.setItem('isLoggedIn', true))
       //saves user email to local storage for use in map view
-       .then(data => localStorage.setItem('userNow', this.state.email))
+       .then(localStorage.setItem('userNow', this.state.email))
        .catch(err => console.warn(err))
+       .then(console.log(localStorage.getItem('isLoggedIn')))
       //changes page to choose teams
       .then(window.location.assign('/TeamChooser'));
       //needs alerts for errors - email/password too short, email duplicate 
