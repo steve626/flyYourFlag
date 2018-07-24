@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import green from '@material-ui/core/colors/yellow'
 import Button from '@material-ui/core/Button';
 import API from "../../utils/API"
+import FormHelperText from '@material-ui/core/FormHelperText';
 //import LocationSwitch from '../../components/LocationSwitch';
 
 
@@ -56,21 +57,28 @@ const styles = theme => ({
 
 class User1 extends Component {
 
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     email: "",
-  //     password: "",
-  //     this.localStorage.setItem('isloggedIn', false),
-  //     this.localStorage.setItem('userNow', "")
-  //   }
-  // }
-  
-    state = {
-      email: "",
-      password: ""   
+  constructor (props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      formErrors: {email: '', password: ''},
+      emailValid: false,
+      passwordValid: false,
+      formValid: false
+    }
+  }
+
+    // state = {
+    //   email: "",
+    //   password: ""   
       
-    };
+    // };
+
+    validatePassword = () => {
+     const pass = this.state.password.length;
+     console.log(pass); 
+    }
 
     componentDidMount() {
       localStorage.setItem('isLoggedIn', false);
@@ -79,13 +87,45 @@ class User1 extends Component {
     )
     };
     
-    handleInputChange = e => {
-      this.setState({ [e.target.name] : e.target.value });
-     };
+
+    handleInputChange(e) {
+      const name = e.target.name;
+      const value = e.target.value;
+      this.setState({[name]: value}, 
+                    () => { this.validateField(name, value) });
+    }
+
+    validateField(fieldName, value) {
+      let fieldValidationErrors = this.state.formErrors;
+      let emailValid = this.state.emailValid;
+      let passwordValid = this.state.passwordValid;
+    
+      switch(fieldName) {
+        case 'email':
+          emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+          fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+          break;
+        case 'password':
+          passwordValid = value.length >= 6;
+          fieldValidationErrors.password = passwordValid ? '': ' is too short';
+          break;
+        default:
+          break;
+      }
+      this.setState({formErrors: fieldValidationErrors,
+                      emailValid: emailValid,
+                      passwordValid: passwordValid
+                    }, this.validateForm);
+    }
+    
+    validateForm() {
+      this.setState({formValid: this.state.emailValid && this.state.passwordValid});
+    }
 
      handleFormRegister = event => {
        event.preventDefault();
-       if (this.state.email && this.state.password) {
+           if (this.state.email && this.state.password) {
+            
       API.createUser({
         email: this.state.email,
         password: this.state.password,
@@ -98,9 +138,12 @@ class User1 extends Component {
        .then(localStorage.setItem('userNow', this.state.email))
        .catch(err => console.warn(err))
        .then(console.log(localStorage.getItem('isLoggedIn')))
+
+       .then(this.validatePassword())
       //changes page to choose teams
       .then(window.location.assign('/TeamChooser'));
       //needs alerts for errors - email/password too short, email duplicate 
+      
     }    
   
 };
@@ -140,14 +183,15 @@ class User1 extends Component {
               <Grid>
                 <Row className='email'>
                   <Col lg={12} xs={12}>
-                    <FormControl className={classes.textField} >
-                      <InputLabel htmlFor="email-simple" style={{ fontSize: '20px', fontFamily: 'Raleway'}}>Email</InputLabel>
+                    <FormControl className={classes.textField}>
+                      <InputLabel htmlFor="name-error" style={{ fontSize: '20px', fontFamily: 'Raleway'}}>Email</InputLabel>
                         <Input style={{padding: '0px 0px 5px'}}
                          className={classes.textField}
                          name='email'
                          value={this.state.email}
                          onChange={this.handleInputChange.bind(this)}
                           />
+                           <FormHelperText id="password-helper-text" style={{fontSize: '12px', marginLeft:'10px'}}>Must be a valid email</FormHelperText>
                     </FormControl>
                   </Col>
                 </Row>
@@ -162,6 +206,7 @@ class User1 extends Component {
                          value={this.state.password}
                          onChange={this.handleInputChange.bind(this)}
                           />
+                        <FormHelperText id="password-helper-text" style={{fontSize: '12px', marginLeft:'10px'}}>password must be longer than 6 characters</FormHelperText>
                     </FormControl>
                   </Col>
                 </Row>
@@ -171,7 +216,7 @@ class User1 extends Component {
                     <Button variant='contained' color="primary" style={{fontFamily: 'Raleway'}}className={classes.button} onClick={this.handleFormLogIn.bind(this)} >
                       Login
                     </Button>
-                    <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button} onClick={this.handleFormRegister.bind(this)} >
+                    <Button variant="contained" color="default" style={{fontFamily: 'Raleway'}} className={classes.button} disabled={!this.state.formValid} onClick={this.handleFormRegister.bind(this)} >
                       Register
                     </Button>
                   </Col>
