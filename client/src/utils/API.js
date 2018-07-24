@@ -36,5 +36,9 @@ export default {
 
     showUserTeams: function(userData) {
       return axios.get("/api/user" ,userData);
+    },
+
+    getUserbyEmail: function(email) {
+        return axios.get("/api/user/email/" + email)
     }
 };

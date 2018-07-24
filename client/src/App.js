@@ -8,7 +8,6 @@ import newLogin from './pages/newLogin';
 import BarNav from './components/BarNav';
 import Wrapper from './components/Wrapper';
 import BotNav from './components/BotNav';
-import RequireAuth from './components/RequireAuth';
 
 
 
@@ -18,7 +17,7 @@ const App = () => (
     <div>
       <BarNav />
         <div>
-        <Route exact path= {['/MapView', '/Profile', '/TeamChooser']} component={BotNav} />
+        <Route exact path= {['/MapView', '/Profile', '/TeamChooser']} component = {BotNav} />
         </div>
         <Wrapper>
           <Switch>

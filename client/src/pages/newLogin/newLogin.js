@@ -113,20 +113,20 @@ class User1 extends Component {
     //checks if there's an email and password entered
     if (this.state.email && this.state.password) {
       //checks the users DB to see if there's an email on record
-    API.showUserTeams()
-    .then(res => this.findOne({ email: this.state.email }, function(err, user) {
-      if (user && user.password === this.body.password) {
+    API.getUserbyEmail(this.state.email)
+    .then(res => {
+      if (res.data[0] && res.data[0].password === this.state.password) {
         console.log('user and password are correct')
         //saves user email to local storage for use in map view
-        .then(localStorage.setItem('userNow', this.state.email))
+        localStorage.setItem('userNow', this.state.email)
         //sets local storage to not ask for pw again
-        .then(localStorage.setItem('isLoggedIn', true))
+        localStorage.setItem('isLoggedIn', true)
         //changes page to mapview
-        .then(window.location.assign('/MapView'))
+        window.location.assign('/MapView')
       .catch(err => console.warn(err)
        )
      }
-    }))
+    })
   }
 };
 
