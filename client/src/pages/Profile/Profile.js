@@ -40,7 +40,7 @@ class Profile extends Component {
     return(
        
   
-      <Wrapper>
+     
           <Row>
             <Col size="sm-4">       
             <h3> your email: {this.state.email} </h3>       
@@ -61,9 +61,7 @@ class Profile extends Component {
                 Reset Password
               </FormBtn>
               
-              
-
-              {this.state.teams.length ? (
+                {this.state.teams.length ? (
                 <List>
                   {this.state.user.map(teams => (
                   <ListItem key={User._id}>
@@ -79,7 +77,7 @@ class Profile extends Component {
                 )}                
             </Col>
           </Row>
-        </Wrapper>
+        
 
       )         
     }

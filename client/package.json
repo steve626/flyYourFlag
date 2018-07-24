@@ -2,7 +2,6 @@
   "name": "fly-your-flag",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
   "homepage": "https://steve626.github.io/flyYourFlag/",
   "dependencies": {
     "@material-ui/core": "^1.3.1",
