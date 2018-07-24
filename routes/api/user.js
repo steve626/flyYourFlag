@@ -18,6 +18,9 @@ router.route("/:email")
 router.route("/:id")
       .put(userController.addUserTeam);
 
+router.route("/:id")
+    .get(userController.showUserTeams);
+
 
 
 module.exports = router;

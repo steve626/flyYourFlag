@@ -76,7 +76,10 @@ export class MapView extends Component {
     return (
 
       <div>
-          <Map 
+      <Map style={{
+            height: "82.5vh",
+            width: "100vw"
+          }} 
             google={this.props.google}
             onClick={this.onMapClick}
             initialCenter={{ lat: 33.356, lng: -111.79 }}
@@ -97,7 +100,7 @@ export class MapView extends Component {
                 ))}
               </select>
             ) : (
-                <h3 className="mt-2" style={{ color: 'white', textAlign: "center" }}>Choose a league </h3>
+                <h3 className="mt-2" style={{ color: 'white', textAlign: "center" }}>Choose a Team </h3>
               )}
           </Col>
           <Col size="sm-8" />

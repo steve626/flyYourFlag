@@ -35,8 +35,8 @@ module.exports = {
     .catch(err => res.status(422).json(err));
   },
 
-  getUser: function(req, res) {
-    user.findOne(req.query)
+  getUsers(req, res) {
+    user.find(req.query)
     .where({email: req.params.email})
     .then(userModel => res.json(userModel))
     .catch(err => res.status(422).json(err));
@@ -84,5 +84,12 @@ module.exports = {
     user.findByIdAndRemove({ _id: userId })
     .then( user => res.status(204).send(user))
     .catch(next);
+  },
+
+  showUserTeams(req, res) {
+    user.findOne(req.query.email)
+    .where({ email: req.body.email})
+    .then(user => res.send(teams))
+    .catch(err => res.status(422).json(err));
   }
 };

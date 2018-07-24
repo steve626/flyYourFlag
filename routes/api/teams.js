@@ -9,5 +9,6 @@ router.route("/")
 router.route("/:league")
     .get(teamController.getTeamsByLeague);
 
+
 module.exports = router;
 
