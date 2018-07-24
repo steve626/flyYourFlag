@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Wrapper from "../../components/Wrapper"
 import { Col, Row, Grid } from 'react-bootstrap';
 import { FormBtn } from '../../components/Form';
 import API from "../../utils/API"
+import './TeamChooser.css';
 //psuedocode of choosing teams:
 // 1. see dropdown boxes of different team leagues
 // 2. choose league and see list of teams eg:show all teams with matching league in DB
@@ -55,6 +55,7 @@ class TeamChooser extends Component {
              <h3 className="mt-2" style={{color:'black', textAlign:"center"}}>Choose your favorite team </h3>
             </Col>
           </Row>
+          
 
           <Row>
             <Col sm={12}>

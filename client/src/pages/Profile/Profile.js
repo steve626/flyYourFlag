@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Wrapper from "../../components/Wrapper";
 import User from '../newLogin';
 import { Col, Row } from 'react-bootstrap';
 import { Form, FormBtn, Input } from '../../components/Form';
