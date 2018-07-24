@@ -9,18 +9,12 @@ router.route("/")
 router.route("/:team")
     .get(userController.getUsersByTeam);
 
-router.route("/:email")
-  .put(userController.addTeamsToUser);
+router.route("/email/:email")
+    .get(userController.getOneUser)
+    .put(userController.addTeamsToUser);
 
-router.route("/:email")
-    .get(userController.getUser);
-
-router.route("/:id")
-      .put(userController.addUserTeam);
-
-router.route("/:id")
-    .get(userController.showUserTeams);
-
-
+// router.route("/:id")
+//     .put(userController.addUserTeam)
+//     .get(userController.showUserTeams);
 
 module.exports = router;

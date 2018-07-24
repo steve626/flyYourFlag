@@ -35,7 +35,9 @@ module.exports = {
     .catch(err => res.status(422).json(err));
   },
 
-  getUsers(req, res) {
+  getOneUser(req, res) {
+    console.log("finding one user");
+    console.log(req.params.email);
     user.find(req.query)
     .where({email: req.params.email})
     .then(userModel => res.json(userModel))
@@ -43,6 +45,7 @@ module.exports = {
   },
 
   getAllUsers(req, res) {
+    console.log("getting all users");
     user.find(req.query)
       .then(userModel => {
         res.json(userModel);})
