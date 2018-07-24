@@ -13,7 +13,7 @@ router.route("/:email")
   .put(userController.addTeamsToUser);
 
 router.route("/:email")
-    .get(userController.getUser);
+    .get(userController.getUsers);
 
 router.route("/:id")
       .put(userController.addUserTeam);
