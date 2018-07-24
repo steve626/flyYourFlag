@@ -100,7 +100,7 @@ export class MapView extends Component {
                 ))}
               </select>
             ) : (
-                <h3 className="mt-2" style={{ color: 'white', textAlign: "center" }}>Choose a league </h3>
+                <h3 className="mt-2" style={{ color: 'white', textAlign: "center" }}>Choose a Team </h3>
               )}
           </Col>
           <Col size="sm-8" />

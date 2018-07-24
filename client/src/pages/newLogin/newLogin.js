@@ -113,10 +113,7 @@ class User1 extends Component {
     //checks if there's an email and password entered
     if (this.state.email && this.state.password) {
       //checks the users DB to see if there's an email on record
-    API.getUsers({
-      email: this.state.email,
-      password: this.state.password
-    })
+    API.showUserTeams()
     .then(res => this.findOne({ email: this.state.email }, function(err, user) {
       if (user && user.password === this.body.password) {
         console.log('user and password are correct')
